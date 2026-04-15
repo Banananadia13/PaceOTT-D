@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PACE OT Training Program – Module 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1a7a6e;
+    --teal-light: #2a9d8f;
+    --teal-pale: #e8f5f3;
+    --gold: #e9a84c;
+    --gold-light: #f5d08a;
+    --navy: #1b2d45;
+    --slate: #4a5568;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --border: #d4e5e2;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,157,143,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 40%;
+    width: 700px; height: 300px;
+    background: radial-gradient(circle, rgba(233,168,76,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-left {}
+  .cover-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 28px;
+  }
+  .cover-title {
+    font-family: 'Fraunces', serif;
+    font-size: 58px;
+    line-height: 1.08;
+    color: var(--white);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+  .cover-subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--gold-light);
+    font-weight: 300;
+    margin-bottom: 36px;
+    letter-spacing: 0.02em;
+  }
+  .cover-meta {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 28px;
+    display: flex;
+    gap: 36px;
+  }
+  .cover-meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 4px;
+  }
+  .cover-meta-item span {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+  .cover-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .workshop-tile {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .workshop-tile:hover { background: rgba(255,255,255,0.09); }
+  .workshop-tile .num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    color: var(--teal-light);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .workshop-tile .name {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 60px;
+  }
+  @media print {
+    .cover { page-break-after: always; }
+    .workshop-section { page-break-before: always; }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 52px;
+    padding-bottom: 36px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--teal-pale);
+    font-weight: 700;
+    flex-shrink: 0;
+    user-select: none;
+    letter-spacing: -4px;
+  }
+  .section-header-text {}
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .section-purpose {
+    font-size: 15px;
+    color: var(--slate);
+    max-width: 640px;
+    line-height: 1.75;
+  }
+
+  /* ── OBJECTIVES STRIP ── */
+  .objectives-strip {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .objectives-strip h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    align-self: center;
+  }
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .obj-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+  .obj-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── CONTENT PARTS ── */
+  .parts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .part-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .part-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--teal-light);
+  }
+  .part-card.gold::before { background: var(--gold); }
+  .part-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .part-card.gold .part-label { color: #b07a20; }
+  .part-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .part-body {
+    font-size: 13.5px;
+    color: var(--slate);
+    line-height: 1.65;
+  }
+  .part-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  .part-body li {
+    display: flex;
+    gap: 8px;
+    padding: 3px 0;
+  }
+  .part-body li::before {
+    content: '→';
+    color: var(--teal-light);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .part-card.gold .part-body li::before { color: var(--gold); }
+
+  /* ── FULL WIDTH CARD ── */
+  .part-card.full {
+    grid-column: 1 / -1;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--teal-pale);
+    border-left: 4px solid var(--teal-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px;
+    margin: 14px 0;
+    font-size: 14px;
+    color: var(--teal);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .highlight-box.gold-box {
+    background: #fef9ee;
+    border-left-color: var(--gold);
+    color: #7a5a1a;
+  }
+
+  /* ── CASE STUDY ── */
+  .case-block {
+    background: #f7f9fc;
+    border: 1px solid #dde5ee;
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  .case-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .case-name {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .case-body {
+    font-size: 13.5px;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .case-body ul { list-style: none; padding: 0; }
+  .case-body li { padding: 2px 0 2px 16px; position: relative; }
+  .case-body li::before {
+    content: '·';
+    position: absolute; left: 4px;
+    color: var(--teal-light);
+    font-weight: 700;
+  }
+  .discussion-q {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 22px;
+  }
+  .discussion-q h4 {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .discussion-q ol {
+    padding-left: 20px;
+    font-size: 13.5px;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+  .discussion-q ol li { padding: 3px 0; }
+
+  /* ── TAKEAWAYS ── */
+  .takeaways {
+    background: linear-gradient(135deg, var(--teal) 0%, #146358 100%);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-top: 40px;
+    color: var(--white);
+  }
+  .takeaways h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: var(--gold-light);
+  }
+  .takeaways ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px; }
+  .takeaways li {
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.88);
+  }
+  .takeaways li::before {
+    content: '✓';
+    color: var(--gold-light);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── DIVIDER ── */
+  .workshop-divider {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin: 80px 60px;
+  }
+
+  /* ── STAGES / PROCESS FLOW ── */
+  .stages-row {
+    display: flex;
+    gap: 0;
+    margin: 16px 0;
+    overflow-x: auto;
+  }
+  .stage-item {
+    flex: 1;
+    text-align: center;
+    padding: 16px 10px;
+    position: relative;
+    min-width: 90px;
+  }
+  .stage-item:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--teal-light);
+    font-size: 16px;
+    z-index: 1;
+  }
+  .stage-pill {
+    display: inline-block;
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    border: 1.5px solid var(--border);
+  }
+  .stage-desc {
+    font-size: 11.5px;
+    color: var(--slate);
+    line-height: 1.4;
+  }
+
+  /* ── TWO-COL TABLE ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  .compare-col {
+    padding: 18px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .compare-col.low {
+    background: var(--teal-pale);
+    border: 1.5px solid var(--teal-light);
+  }
+  .compare-col.high {
+    background: #fff8ed;
+    border: 1.5px solid var(--gold);
+  }
+  .compare-col h4 {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .compare-col.low h4 { color: var(--teal); }
+  .compare-col.high h4 { color: #b07a20; }
+  .compare-col ul { list-style: none; }
+  .compare-col li { padding: 2px 0; color: var(--slate); }
+  .compare-col li::before { content: '• '; }
+
+  /* ── REFERRAL FLAGS ── */
+  .flags-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .flag-card {
+    border-radius: 8px;
+    padding: 18px;
+    border-top: 3px solid;
+  }
+  .flag-card.physical { background: #eef7f5; border-color: var(--teal-light); }
+  .flag-card.mental { background: #eef2ff; border-color: #6366f1; }
+  .flag-card.behaviour { background: #fff8f0; border-color: #f97316; }
+  .flag-card.comms { background: #f0fdf4; border-color: #22c55e; }
+  .flag-card.nutrition { background: #fef9ee; border-color: var(--gold); }
+  .flag-card h4 {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .flag-card ul { list-style: none; font-size: 12.5px; color: var(--slate); }
+  .flag-card li { padding: 2px 0; }
+  .flag-card li::before { content: '· '; font-weight: 700; }
+  .flag-card .refer-to {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.07);
+    color: var(--navy);
+  }
+
+  /* ── PEO MODEL ── */
+  .peo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .peo-card {
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+  .peo-card.person { background: #e8f5f3; }
+  .peo-card.environment { background: #fff8ed; }
+  .peo-card.occupation { background: #eef2ff; }
+  .peo-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .peo-card.person .peo-letter { color: var(--teal); }
+  .peo-card.environment .peo-letter { color: #b07a20; }
+  .peo-card.occupation .peo-letter { color: #6366f1; }
+  .peo-card h4 {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .peo-card ul { list-style: none; font-size: 12.5px; color: var(--slate); text-align: left; }
+  .peo-card li { padding: 2px 0; }
+  .peo-card li::before { content: '· '; }
+
+  /* ── SOAP NOTES ── */
+  .soap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .soap-card {
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .soap-card.s { background: var(--teal-pale); }
+  .soap-card.o { background: #fff8ed; }
+  .soap-card.a { background: #eef2ff; }
+  .soap-card.p { background: #f0fdf4; }
+  .soap-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .soap-card.s .soap-letter { color: var(--teal); }
+  .soap-card.o .soap-letter { color: #b07a20; }
+  .soap-card.a .soap-letter { color: #6366f1; }
+  .soap-card.p .soap-letter { color: #16a34a; }
+  .soap-card h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 4px 0 8px;
+  }
+  .soap-card p {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .soap-card .example {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--navy);
+    opacity: 0.7;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+
+  /* ── MI TOOLS ── */
+  .mi-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .mi-tool {
+    border-radius: 8px;
+    padding: 18px 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+  .mi-tool h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .mi-tool .desc {
+    font-size: 12.5px;
+    color: var(--slate);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .mi-tool .eg {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--navy);
+    background: var(--teal-pale);
+    border-radius: 6px;
+    padding: 8px 12px;
+    line-height: 1.5;
+  }
+
+  /* ── DECISION FRAMEWORK ── */
+  .decision-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .decision-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: var(--navy);
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    background: var(--teal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .decision-guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .dg-item {
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .dg-item.green { background: #f0fdf4; border-left: 3px solid #22c55e; }
+  .dg-item.amber { background: #fff8f0; border-left: 3px solid #f97316; }
+  .dg-item.grey { background: #f4f6f9; border-left: 3px solid #94a3b8; }
+  .dg-item strong { display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; color: var(--navy); }
+  .dg-item span { color: var(--slate); }
+
+  /* ── TOC ── */
+  .toc-page {
+    background: var(--white);
+    min-height: 100vh;
+    padding: 80px 60px;
+  }
+  .toc-title {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--navy);
+    margin-bottom: 48px;
+  }
+  .toc-row {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 24px;
+    cursor: default;
+    transition: opacity 0.2s;
+  }
+  .toc-row:hover { opacity: 0.75; }
+  .toc-num {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--teal-pale);
+    letter-spacing: -2px;
+    width: 70px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .toc-content {}
+  .toc-workshop-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .toc-parts {
+    font-size: 12.5px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .toc-badge {
+    margin-left: auto;
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ COVER ══════════ -->
+<div class="cover">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="cover-tag">Training &amp; Development Program</div>
+      <div class="cover-title">PACE <em>OT</em><br>Training<br>Program</div>
+      <div class="cover-subtitle">Module 1: Foundations of Practice</div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <label>Organisation</label>
+          <span>PACE Health Management</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>Workshops</label>
+          <span>6 Workshops</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>Audience</label>
+          <span>Occupational Therapists</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="workshop-tile"><div class="num">01</div><div class="name">The PACE Way – Foundations of Clinical Practice</div></div>
+      <div class="workshop-tile"><div class="num">02</div><div class="name">Motivational Interviewing &amp; Therapeutic Communication</div></div>
+      <div class="workshop-tile"><div class="num">03</div><div class="name">Managing Workload &amp; Preventing Burnout</div></div>
+      <div class="workshop-tile"><div class="num">04</div><div class="name">Clinical Reasoning in OT Practice</div></div>
+      <div class="workshop-tile"><div class="num">05</div><div class="name">Core OT Services at PACE</div></div>
+      <div class="workshop-tile"><div class="num">06</div><div class="name">Working in a Multidisciplinary Team</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TABLE OF CONTENTS ══════════ -->
+<div class="toc-page">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="toc-title">Contents</div>
+    <div class="toc-row">
+      <div class="toc-num">01</div>
+      <div class="toc-content">
+        <div class="toc-workshop-name">The PACE Way – Foundations of Clinical Practice</div>
+        <div class="toc-parts">Role of OT at PACE · Community-Based Reality · First Sessions · Progress Not Perfection · Layering Interventions · Scope of Practice</div>
+      </div>
+      <div class="toc-badge">7 Parts</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">02</div>
+      <div class="toc-content">
+        <div class="toc-workshop-name">Motivational Interviewing &amp; Therapeutic Communication</div>
+        <div class="toc-parts">Understanding MI · Behaviour Change · Stages of Change · Communication Tools · Addressing Ambivalence · Conceptual Change</div>
+      </div>
+      <div class="toc-badge">6 Parts</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">03</div>
+      <div class="toc-content">
+        <div class="toc-workshop-name">Managing Workload &amp; Preventing Burnout</div>
+        <div class="toc-parts">Understanding Burnout · Emotional Load · Progress Not Perfection · Caseload Management · Professional Boundaries · Sustainable Habits</div>
+      </div>
+      <div class="toc-badge">7 Parts</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">04</div>
+      <div class="toc-content">
+        <div class="toc-workshop-name">Clinical Reasoning in OT Practice</div>
+        <div class="toc-parts">Understanding Clinical Reasoning · Functional vs Impairment Thinking · PEO Model · Key Drivers · Prioritising Interventions · Managing Complexity · Trial vs Prescribe</div>
+      </div>
+      <div class="toc-badge">8 Parts</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">05</div>
+      <div class="toc-content">
+        <div class="toc-workshop-name">Core Occupational Therapy Services at PACE</div>
+        <div class="toc-parts">OT Services Overview · Functional Capacity Assessments · Assistive Technology · Home Modifications · SIL &amp; SDA · Capacity Building · SOAP Notes</div>
+      </div>
+      <div class="toc-badge">8 Parts</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">06</div>
+      <div class="toc-content">
+        <div class="toc-workshop-name">Working in a Multidisciplinary Team</div>
+        <div class="toc-parts">Role of MDT Care · Professional Roles · Referral Flags · Decision Framework · Collaborative Case Management · Interdisciplinary Planning · Scope of Practice</div>
+      </div>
+      <div class="toc-badge">8 Parts</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ WORKSHOP 1 ══════════ -->
+<div class="page workshop-section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-header-text">
+      <div class="section-label">Workshop One</div>
+      <div class="section-title">The PACE Way –<br>Foundations of Clinical Practice</div>
+      <div class="section-purpose">This workshop introduces the PACE approach to occupational therapy practice and sets expectations for how therapy progresses with participants in real-world clinical settings.</div>
+    </div>
+  </div>
+
+  <div class="objectives-strip">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the role of OT within PACE Health</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply the "progress not perfection" mindset</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise the purpose of early therapy sessions</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand how interventions are layered over time</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify the limits of the OT role in complex situations</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Develop realistic expectations for participant progress</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise when MDT collaboration may be required</span></div>
+    </div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-label">Part 1</div>
+      <div class="part-title">The Role of OT at PACE</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">OTs support participants to improve:</p>
+        <ul>
+          <li>Independence in daily activities</li>
+          <li>Safety within their environment</li>
+          <li>Overall quality of life</li>
+          <li>Participation in meaningful activities</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Common areas: Functional capacity assessments · Assistive technology · Home modifications · Capacity building</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 2</div>
+      <div class="part-title">The Reality of Community-Based Practice</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Participants may present with:</p>
+        <ul>
+          <li>Multiple health conditions</li>
+          <li>Environmental barriers</li>
+          <li>Financial limitations</li>
+          <li>Mental health challenges</li>
+          <li>Social isolation &amp; complex family dynamics</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Practice requires adaptation, collaboration, and gradual progress — not immediate solutions.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 3</div>
+      <div class="part-title">The Purpose of the First Session</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">The first session typically focuses on:</p>
+        <ul>
+          <li>Building rapport</li>
+          <li>Understanding participant goals</li>
+          <li>Gathering information</li>
+          <li>Identifying key priorities</li>
+          <li>Developing shared understanding</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Establishing trust is often more valuable than implementing multiple interventions immediately.</div>
+      </div>
+    </div>
+
+    <div class="part-card gold">
+      <div class="part-label">Part 4</div>
+      <div class="part-title">Progress Not Perfection</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Effective therapy often involves:</p>
+        <ul>
+          <li>Introducing small strategies</li>
+          <li>Trialling different approaches</li>
+          <li>Reviewing progress over time</li>
+          <li>Adjusting interventions as needed</li>
+        </ul>
+        <div class="highlight-box gold-box" style="margin-top:12px;">Focusing on progress rather than perfection helps clinicians manage expectations and reduce unnecessary pressure.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 5</div>
+      <div class="part-title">Layering Interventions Over Time</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Effective therapy may involve:</p>
+        <ul>
+          <li>Identifying the most important priorities</li>
+          <li>Introducing strategies gradually</li>
+          <li>Evaluating outcomes</li>
+          <li>Building on previous progress</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 6</div>
+      <div class="part-title">Understanding Scope of Practice</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Situations that may extend beyond OT scope:</p>
+        <ul>
+          <li>Complex mental health concerns</li>
+          <li>Nutritional issues</li>
+          <li>Communication difficulties</li>
+          <li>Medical management needs</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Collaborative care ensures participants receive comprehensive support.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Studies -->
+  <div style="margin-top:40px;">
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;">Case-Based Discussion</div>
+    <div class="case-block">
+      <div class="case-tag">Case 1</div>
+      <div class="case-name">Unrealistic Expectations in Early Sessions</div>
+      <div class="case-body">
+        <p>Emma is a new OT who begins discussing multiple strategies with Daniel during session one — energy conservation, equipment options, activity scheduling, and community programs. Daniel appears overwhelmed.</p>
+        <ul style="margin-top:8px;">
+          <li>Goals: cooking independence, managing fatigue, community participation</li>
+          <li>Emma addressed all areas simultaneously in session one</li>
+          <li>Daniel ended the session unsure where to begin</li>
+        </ul>
+      </div>
+      <div class="discussion-q">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What factors may have contributed to Daniel feeling overwhelmed?</li>
+          <li>What might a more effective first session have looked like?</li>
+          <li>How could Emma prioritise Daniel's goals more effectively?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <div class="case-tag">Case 2</div>
+      <div class="case-name">Working with Complex Participants</div>
+      <div class="case-body">
+        <p>Liam supports a participant who presents with mobility challenges, chronic pain, social isolation, and low motivation. He feels unsure where to start.</p>
+      </div>
+      <div class="discussion-q">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What factors might influence Liam's clinical decision making?</li>
+          <li>How could Liam prioritise interventions in this situation?</li>
+          <li>When might it be helpful to involve the multidisciplinary team?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Participant-centred care is at the core of the PACE approach</li>
+      <li>Meaningful progress occurs gradually, not immediately</li>
+      <li>Thoughtful prioritisation of interventions is essential</li>
+      <li>Collaboration with the MDT supports comprehensive care</li>
+      <li>Early sessions focus on rapport, not problem-solving</li>
+      <li>Focus on progress, collaboration, and meaningful outcomes</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="workshop-divider">
+
+<!-- ══════════ WORKSHOP 2 ══════════ -->
+<div class="page workshop-section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-header-text">
+      <div class="section-label">Workshop Two</div>
+      <div class="section-title">Motivational Interviewing &amp;<br>Therapeutic Communication</div>
+      <div class="section-purpose">This workshop introduces motivational interviewing and therapeutic communication strategies that help OTs support behaviour change and improve participant engagement.</div>
+    </div>
+  </div>
+
+  <div class="objectives-strip">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the principles of motivational interviewing</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply MI communication tools in clinical practice</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify stages of behaviour change in participants</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise common barriers that influence behaviour</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Facilitate meaningful conversations toward action</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Support long-term engagement in therapy</span></div>
+    </div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-label">Part 1</div>
+      <div class="part-title">Understanding Motivational Interviewing</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">MI is a collaborative approach that focuses on:</p>
+        <ul>
+          <li>Exploring participant goals</li>
+          <li>Understanding their perspectives</li>
+          <li>Identifying barriers to change</li>
+          <li>Supporting autonomy in decision making</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Particularly useful when participants feel unsure, resistant, or overwhelmed by their situation.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 2</div>
+      <div class="part-title">Behaviour Change in OT</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Common reasons for hesitation or resistance:</p>
+        <ul>
+          <li>Fear of failure</li>
+          <li>Fatigue or pain</li>
+          <li>Negative healthcare experiences</li>
+          <li>Environmental barriers</li>
+          <li>Low confidence</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Approach conversations with empathy and curiosity rather than pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stages of change -->
+  <div class="part-card full" style="margin-bottom:20px;">
+    <div class="part-label">Part 3</div>
+    <div class="part-title">Stages of Behaviour Change</div>
+    <div class="stages-row">
+      <div class="stage-item"><div class="stage-pill">Precontemplation</div><div class="stage-desc">Not yet considering change</div></div>
+      <div class="stage-item"><div class="stage-pill">Contemplation</div><div class="stage-desc">Aware of a problem, uncertain about change</div></div>
+      <div class="stage-item"><div class="stage-pill">Preparation</div><div class="stage-desc">Beginning to consider possible actions</div></div>
+      <div class="stage-item"><div class="stage-pill">Action</div><div class="stage-desc">Actively working toward change</div></div>
+      <div class="stage-item"><div class="stage-pill">Maintenance</div><div class="stage-desc">Sustaining new behaviours</div></div>
+    </div>
+    <div class="highlight-box" style="margin-top:12px;">Recognising stages helps clinicians tailor conversations to the participant's readiness for change.</div>
+  </div>
+
+  <!-- MI Communication Tools -->
+  <div style="margin-bottom:20px;">
+    <div class="part-card full">
+      <div class="part-label">Part 4</div>
+      <div class="part-title">Communication Tools in Motivational Interviewing</div>
+      <div class="mi-tools">
+        <div class="mi-tool">
+          <h4>Open Questions</h4>
+          <div class="desc">Encourage participants to reflect and share their perspectives.</div>
+          <div class="eg">"What would a good day at home look like for you?"</div>
+        </div>
+        <div class="mi-tool">
+          <h4>Affirmations</h4>
+          <div class="desc">Acknowledge participant strengths and efforts.</div>
+          <div class="eg">"It sounds like you've already made some positive changes."</div>
+        </div>
+        <div class="mi-tool">
+          <h4>Reflective Listening</h4>
+          <div class="desc">Demonstrates understanding and clarifies the participant's perspective.</div>
+          <div class="eg">"It sounds like you want to be more independent, but you're worried about making things worse."</div>
+        </div>
+        <div class="mi-tool">
+          <h4>Summaries</h4>
+          <div class="desc">Reinforce key points and ensure shared understanding.</div>
+          <div class="eg">"So being able to cook independently is really important to you."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card gold">
+      <div class="part-label">Part 5</div>
+      <div class="part-title">Addressing Ambivalence</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Participants often experience mixed feelings. Rather than persuading, clinicians explore:</p>
+        <div class="highlight-box gold-box">"What do you think might improve if things changed?"</div>
+        <p style="margin-top:12px;font-size:13.5px;color:var(--slate);">Exploring these ideas helps participants articulate their own motivations.</p>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 6</div>
+      <div class="part-title">Supporting Conceptual Change</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Clinicians can support conceptual change by:</p>
+        <ul>
+          <li>Acknowledging the participant's perspective</li>
+          <li>Introducing new ideas gradually</li>
+          <li>Linking strategies to meaningful outcomes</li>
+          <li>Reinforcing progress over time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Studies -->
+  <div style="margin-top:40px;">
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;">Case-Based Discussion</div>
+    <div class="case-block">
+      <div class="case-tag">Case 1</div>
+      <div class="case-name">Avoidance of Daily Activities Due to Pain</div>
+      <div class="case-body">
+        <p>Maria, 38, avoids daily activities due to fear of worsening her back pain. She wants to cook, spend time with friends, and return to work — but says she'd prefer to "wait until the pain improves."</p>
+      </div>
+      <div class="discussion-q">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>Which stage of behaviour change might Maria be in?</li>
+          <li>What beliefs or fears may be influencing her behaviour?</li>
+          <li>What types of questions could help explore her concerns further?</li>
+          <li>How might MI help Maria move toward considering small changes?</li>
+        </ol>
+      </div>
+    </div>
+    <div class="case-block">
+      <div class="case-tag">Case 2</div>
+      <div class="case-name">Resistance to Home Modifications</div>
+      <div class="case-body">
+        <p>David, 62, post-stroke, resists recommended home modifications. He worries the changes will make his home feel "like a hospital" — yet his goals include remaining at home long term and reducing fall risk.</p>
+      </div>
+      <div class="discussion-q">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What stage of change might David be in regarding home modifications?</li>
+          <li>What factors might be influencing his resistance?</li>
+          <li>How might the involvement of his wife influence the conversation?</li>
+          <li>How could you support David in maintaining a sense of autonomy?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>MI supports participant-led motivation for change</li>
+      <li>Recognising stages of change guides the conversation</li>
+      <li>Open questions, affirmations, and reflections are core tools</li>
+      <li>Ambivalence is normal — explore it, don't argue against it</li>
+      <li>Approach conversations with empathy and curiosity</li>
+      <li>Sustainable change often requires shift in understanding</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="workshop-divider">
+
+<!-- ══════════ WORKSHOP 3 ══════════ -->
+<div class="page workshop-section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-header-text">
+      <div class="section-label">Workshop Three</div>
+      <div class="section-title">Managing Workload &amp;<br>Preventing Burnout</div>
+      <div class="section-purpose">To support Occupational Therapists in developing sustainable clinical practice habits and maintaining wellbeing while working with complex participants.</div>
+    </div>
+  </div>
+
+  <div class="objectives-strip">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise common causes of burnout in allied health</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply strategies for prioritising clinical work</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify early signs of stress and compassion fatigue</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Develop strategies for setting professional boundaries</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand workload management expectations at PACE</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Build habits that support sustainable practice</span></div>
+    </div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-label">Part 1</div>
+      <div class="part-title">Understanding Burnout in Allied Health</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Burnout in allied health occurs due to:</p>
+        <ul>
+          <li>High emotional demands</li>
+          <li>Complex client presentations</li>
+          <li>Time pressure</li>
+          <li>Administrative workload</li>
+          <li>Feeling responsible for everything</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Early career clinicians are particularly vulnerable — recognising burnout early is essential.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 2</div>
+      <div class="part-title">Emotional Load in Disability Work</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Common clinician responses to emotional load:</p>
+        <ul>
+          <li>Feeling personally responsible for participant outcomes</li>
+          <li>Difficulty switching off after work</li>
+          <li>Frustration when progress is slow</li>
+          <li>Feeling overwhelmed by complex cases</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">These are normal reactions to demanding work — recognise them proactively.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 3</div>
+      <div class="part-title">Progress Not Perfection</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Common early-clinician beliefs to challenge:</p>
+        <ul>
+          <li>Feeling they must solve every problem</li>
+          <li>Providing the perfect solution immediately</li>
+          <li>Achieving rapid progress</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Effective therapy involves gradual progress, trial and adjustment, and layering strategies over time.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 4</div>
+      <div class="part-title">Managing Caseload &amp; Priorities</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Effective workload management strategies:</p>
+        <ul>
+          <li>Identify the most urgent client needs</li>
+          <li>Break complex problems into smaller steps</li>
+          <li>Set realistic timeframes for reports</li>
+          <li>Use supervision to problem-solve difficult cases</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 5</div>
+      <div class="part-title">Setting Professional Boundaries</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Boundaries may include:</p>
+        <ul>
+          <li>Maintaining appropriate professional roles</li>
+          <li>Recognising limits of scope of practice</li>
+          <li>Setting realistic expectations with participants</li>
+          <li>Avoiding overextension beyond work hours</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Strong boundaries support both clinician wellbeing and effective client care.</div>
+      </div>
+    </div>
+
+    <div class="part-card gold">
+      <div class="part-label">Part 6 &amp; 7</div>
+      <div class="part-title">Seeking Support &amp; Sustainable Habits</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Seek support when:</p>
+        <ul>
+          <li>Managing complex participants</li>
+          <li>Feeling uncertain about clinical decisions</li>
+          <li>Experiencing emotional stress or overload</li>
+        </ul>
+        <p style="margin:12px 0 8px;font-size:13.5px;color:var(--slate);">Sustainable habits include:</p>
+        <ul>
+          <li>Reflecting on challenging cases</li>
+          <li>Maintaining clear work-life boundaries</li>
+          <li>Recognising achievements and progress</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;">Case-Based Discussion</div>
+    <div class="case-block">
+      <div class="case-tag">Case 1</div>
+      <div class="case-name">Feeling Responsible for Solving Everything</div>
+      <div class="case-body">
+        <p>Sarah is researching resources outside work hours, replying to emails at night, and feeling anxious about whether she is doing enough for her participant Michael — a 42-year-old with a spinal cord injury, chronic pain, and low support.</p>
+      </div>
+      <div class="discussion-q">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What factors may be contributing to Sarah feeling overwhelmed?</li>
+          <li>What aspects of Michael's situation fall within Sarah's OT role?</li>
+          <li>Are there opportunities for multidisciplinary support?</li>
+          <li>What strategies could help Sarah maintain professional boundaries?</li>
+        </ol>
+      </div>
+    </div>
+    <div class="case-block">
+      <div class="case-tag">Case 2</div>
+      <div class="case-name">Difficulty Switching Off After Work</div>
+      <div class="case-body">
+        <p>James replays conversations at home, checks emails late at night, and finds it difficult to relax after working with a participant experiencing increasing mental health difficulties.</p>
+      </div>
+      <div class="discussion-q">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What signs suggest James may be experiencing early burnout?</li>
+          <li>What strategies could help James manage the emotional impact?</li>
+          <li>How might supervision or peer discussion help?</li>
+          <li>What habits could support healthier work-life boundaries?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Burnout is a risk in disability and community health work</li>
+      <li>Recognise early warning signs and respond proactively</li>
+      <li>Progress over perfection is a sustainable clinical mindset</li>
+      <li>Professional boundaries protect both clinicians and clients</li>
+      <li>Seeking support is normal, expected, and encouraged</li>
+      <li>Sustainable careers require balance across all life domains</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="workshop-divider">
+
+<!-- ══════════ WORKSHOP 4 ══════════ -->
+<div class="page workshop-section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-header-text">
+      <div class="section-label">Workshop Four</div>
+      <div class="section-title">Clinical Reasoning in<br>OT Practice</div>
+      <div class="section-purpose">This workshop develops clinical reasoning skills when working with participants who present with complex or multifactorial challenges in community and NDIS settings.</div>
+    </div>
+  </div>
+
+  <div class="objectives-strip">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the role of clinical reasoning in OT practice</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify key drivers of disability or participation restriction</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply structured frameworks to guide decision making</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Prioritise interventions when multiple challenges are present</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Distinguish impairment-focused from functional approaches</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise when to trial vs prescribe interventions</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Use the PEO model to analyse participation challenges</span></div>
+    </div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-label">Part 1</div>
+      <div class="part-title">Understanding Clinical Reasoning</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Clinical reasoning involves integrating:</p>
+        <ul>
+          <li>Clinical knowledge</li>
+          <li>Participant goals</li>
+          <li>Environmental context</li>
+          <li>Professional experience</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 2</div>
+      <div class="part-title">Functional vs Impairment-Based Thinking</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Functional thinking asks:</p>
+        <ul>
+          <li>What activities does the participant need to do?</li>
+          <li>What is stopping them from doing it?</li>
+          <li>What strategies could improve participation?</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Focus on function and participation — not solely on underlying impairments.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PEO Model -->
+  <div class="part-card full" style="margin-bottom:20px;">
+    <div class="part-label">Part 3</div>
+    <div class="part-title">The PEO Model</div>
+    <div class="peo-grid">
+      <div class="peo-card person">
+        <div class="peo-letter">P</div>
+        <h4>Person</h4>
+        <ul>
+          <li>Physical abilities</li>
+          <li>Cognitive capacity</li>
+          <li>Emotional &amp; psychological factors</li>
+          <li>Health conditions</li>
+        </ul>
+      </div>
+      <div class="peo-card environment">
+        <div class="peo-letter">E</div>
+        <h4>Environment</h4>
+        <ul>
+          <li>Physical environment</li>
+          <li>Social supports</li>
+          <li>Accessibility</li>
+          <li>Cultural and contextual factors</li>
+        </ul>
+      </div>
+      <div class="peo-card occupation">
+        <div class="peo-letter">O</div>
+        <h4>Occupation</h4>
+        <ul>
+          <li>Meaningful activities</li>
+          <li>Daily tasks</li>
+          <li>Roles and routines</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:14px;">Clinical reasoning involves identifying <strong>where the mismatch</strong> between person, environment, and occupation is occurring.</div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-label">Part 4</div>
+      <div class="part-title">Identifying Key Drivers of Disability</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Participants may face challenges from:</p>
+        <ul>
+          <li>Physical impairments</li>
+          <li>Environmental barriers</li>
+          <li>Psychological factors</li>
+          <li>Social support limitations</li>
+          <li>Fatigue or pain</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Identify the primary driver — don't address everything at once.</div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 5</div>
+      <div class="part-title">Prioritising Interventions</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Ask:</p>
+        <ul>
+          <li>What has the greatest impact on daily life?</li>
+          <li>What is most achievable right now?</li>
+          <li>What aligns with participant goals?</li>
+          <li>What will create early wins?</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Address safety risks first, then target high-impact functional tasks.</div>
+      </div>
+    </div>
+
+    <div class="part-card gold">
+      <div class="part-label">Part 7</div>
+      <div class="part-title">Trialling vs Prescribing Interventions</div>
+      <div class="part-body">
+        <div class="compare-grid">
+          <div class="compare-col low">
+            <h4>Trial First When</h4>
+            <ul>
+              <li>Participant is unsure</li>
+              <li>Multiple options exist</li>
+              <li>Long-term cost is high</li>
+              <li>Functional benefit is unclear</li>
+            </ul>
+          </div>
+          <div class="compare-col high">
+            <h4>Prescribe When</h4>
+            <ul>
+              <li>Strong evidence of benefit</li>
+              <li>Clear clinical need</li>
+              <li>Safety concerns are present</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-card">
+      <div class="part-label">Part 6</div>
+      <div class="part-title">Managing Complexity in NDIS Participants</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Key clinical approach:</p>
+        <ul>
+          <li>Simplify where possible</li>
+          <li>Prioritise key goals</li>
+          <li>Introduce changes gradually</li>
+          <li>Collaborate with other professionals</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">Recognising complexity allows clinicians to set realistic expectations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;">Case-Based Discussion</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 1</div>
+        <div class="case-name">Neurological Client</div>
+        <div class="case-body"><p>Anna, 55 — stroke 12 months ago. Left-sided weakness, reduced balance, fatigue. Goals: prepare meals, garden, reduce reliance on partner.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Key drivers of functional challenges?</li><li>How would PEO apply?</li><li>What to prioritise first?</li></ol></div>
+      </div>
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 2</div>
+        <div class="case-name">Mental Health Participant</div>
+        <div class="case-body"><p>James, 29 — depression and anxiety. Difficulty maintaining routines, overwhelmed, poor task initiation. Goals: morning routine, home maintenance, community engagement.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Factors influencing participation?</li><li>How do psychological and environmental factors interact?</li><li>Small achievable first steps?</li></ol></div>
+      </div>
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 3</div>
+        <div class="case-name">Complex Home Environment</div>
+        <div class="case-body"><p>Helen, 72 — arthritis, reduced mobility. Narrow hallways, step into shower, limited supports. Recent falls, wants to remain independent.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Environmental contributors to risk?</li><li>Interventions to prioritise?</li><li>When are home mods appropriate?</li></ol></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Clinical reasoning is a core OT skill</li>
+      <li>Use the PEO model to identify where the mismatch occurs</li>
+      <li>Focus on functional outcomes, not just impairments</li>
+      <li>Identify the primary driver — don't address everything at once</li>
+      <li>Prioritise strategically: safety first, then high-impact tasks</li>
+      <li>Trial interventions when benefit is uncertain</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="workshop-divider">
+
+<!-- ══════════ WORKSHOP 5 ══════════ -->
+<div class="page workshop-section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-header-text">
+      <div class="section-label">Workshop Five</div>
+      <div class="section-title">Core Occupational Therapy<br>Services at PACE</div>
+      <div class="section-purpose">This workshop introduces core OT services at PACE Health and provides a practical framework for understanding how these services support participant independence, safety, and participation.</div>
+    </div>
+  </div>
+
+  <div class="objectives-strip">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand core OT services provided at PACE</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Differentiate between low and high cost assistive technology</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify when different service pathways are appropriate</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise when SIL and SDA may be relevant</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand FCA, AT, and home modification processes</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply structured documentation using SOAP notes</span></div>
+    </div>
+  </div>
+
+  <!-- Services Overview -->
+  <div class="part-card full" style="margin-bottom:20px;">
+    <div class="part-label">Part 1</div>
+    <div class="part-title">OT Services at PACE</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;">
+      <div style="flex:1;min-width:140px;background:var(--teal-pale);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:600;color:var(--teal);">Functional Capacity<br>Assessments (FCA)</div>
+      <div style="flex:1;min-width:140px;background:#fff8ed;border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:600;color:#b07a20;">Assistive<br>Technology (AT)</div>
+      <div style="flex:1;min-width:140px;background:#eef2ff;border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:600;color:#6366f1;">Home Modifications<br>(HM)</div>
+      <div style="flex:1;min-width:140px;background:#f0fdf4;border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:600;color:#16a34a;">Capacity Building<br>Interventions</div>
+      <div style="flex:1;min-width:140px;background:#f7f9fc;border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:600;color:var(--slate);">OT<br>Reports</div>
+    </div>
+  </div>
+
+  <div class="parts-grid">
+    <!-- FCA -->
+    <div class="part-card">
+      <div class="part-label">Part 2</div>
+      <div class="part-title">Functional Capacity Assessments</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Areas assessed:</p>
+        <ul>
+          <li>Activities of daily living</li>
+          <li>Mobility and transfers</li>
+          <li>Cognition</li>
+          <li>Environmental barriers</li>
+          <li>Social and community participation</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:12px;">FCAs must clearly justify <strong>why supports are needed and how they improve function.</strong></div>
+        <div class="stages-row" style="margin-top:14px;flex-wrap:wrap;gap:6px;">
+          <div class="stage-item" style="flex:none;min-width:70px;"><div class="stage-pill">Referral</div></div>
+          <div class="stage-item" style="flex:none;min-width:70px;"><div class="stage-pill">Assessment</div></div>
+          <div class="stage-item" style="flex:none;min-width:70px;"><div class="stage-pill">Observation</div></div>
+          <div class="stage-item" style="flex:none;min-width:70px;"><div class="stage-pill">Findings</div></div>
+          <div class="stage-item" style="flex:none;min-width:70px;"><div class="stage-pill">Report</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AT -->
+    <div class="part-card">
+      <div class="part-label">Part 3</div>
+      <div class="part-title">Assistive Technology</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Examples: mobility aids, shower equipment, kitchen adaptations, communication devices</p>
+        <div class="compare-grid">
+          <div class="compare-col low">
+            <h4>Low Cost AT</h4>
+            <ul>
+              <li>Lower risk, simpler items</li>
+              <li>Minimal assessment</li>
+              <li>Quicker implementation</li>
+            </ul>
+          </div>
+          <div class="compare-col high">
+            <h4>High Cost AT</h4>
+            <ul>
+              <li>Higher complexity</li>
+              <li>Detailed assessment</li>
+              <li>Trial and justification</li>
+              <li>Formal funding approval</li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight-box gold-box" style="margin-top:12px;">AT should always be goal-directed, practical, and sustainable.</div>
+      </div>
+    </div>
+
+    <!-- Home Mods -->
+    <div class="part-card">
+      <div class="part-label">Part 4</div>
+      <div class="part-title">Home Modifications</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Examples: grab rails, bathroom modifications, ramps, layout adjustments</p>
+        <p style="font-size:13.5px;color:var(--slate);margin-bottom:8px;">Key considerations:</p>
+        <ul>
+          <li>Safety</li>
+          <li>Long-term accessibility</li>
+          <li>Participant goals</li>
+          <li>Feasibility of the environment</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIL SDA -->
+    <div class="part-card">
+      <div class="part-label">Part 5</div>
+      <div class="part-title">SIL &amp; SDA Overview</div>
+      <div class="part-body">
+        <p style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;">Supported Independent Living (SIL)</p>
+        <p style="font-size:13px;color:var(--slate);margin-bottom:12px;">Support with daily tasks, supervision, building independence in a supported environment.</p>
+        <p style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;">Specialist Disability Accommodation (SDA)</p>
+        <p style="font-size:13px;color:var(--slate);margin-bottom:12px;">Specialised housing design for significant physical support needs.</p>
+        <div class="highlight-box" style="margin-top:4px;">OTs contribute by assessing functional needs, identifying barriers, and providing recommendations.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOAP Notes -->
+  <div class="part-card full" style="margin-bottom:20px;margin-top:0;">
+    <div class="part-label">Part 7</div>
+    <div class="part-title">Clinical Documentation – SOAP Notes</div>
+    <div class="soap-grid">
+      <div class="soap-card s">
+        <div class="soap-letter">S</div>
+        <h4>Subjective</h4>
+        <p>What the participant reports</p>
+        <div class="example">"Participant reports increased fatigue when cooking."</div>
+      </div>
+      <div class="soap-card o">
+        <div class="soap-letter">O</div>
+        <h4>Objective</h4>
+        <p>What you observe</p>
+        <div class="example">Participant required rest breaks after 5 minutes of standing.</div>
+      </div>
+      <div class="soap-card a">
+        <div class="soap-letter">A</div>
+        <h4>Assessment</h4>
+        <p>Your clinical interpretation</p>
+        <div class="example">Fatigue is limiting task completion and independence.</div>
+      </div>
+      <div class="soap-card p">
+        <div class="soap-letter">P</div>
+        <h4>Plan</h4>
+        <p>Next steps</p>
+        <div class="example">Trial seated meal preparation and introduce energy conservation strategies.</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:14px;">Documentation should clearly link: <strong>what is happening → why it matters → what will be done next</strong></div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;">Case-Based Discussion</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 1</div>
+        <div class="case-name">AT for Daily Tasks</div>
+        <div class="case-body"><p>Sam, 46 — multiple sclerosis. Fatigue, reduced grip strength, difficulty with meal prep and opening containers.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Key functional challenges?</li><li>What AT may support independence?</li><li>Would trialling be appropriate?</li></ol></div>
+      </div>
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 2</div>
+        <div class="case-name">Home Mods for Safety</div>
+        <div class="case-body"><p>Linda, 70 — recent falls. Home: high step into shower, no grab rails, slippery surfaces. Wants to remain independent.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Environmental risks present?</li><li>Home modifications to recommend?</li><li>How would you prioritise?</li></ol></div>
+      </div>
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 3</div>
+        <div class="case-name">Functional Capacity Assessment</div>
+        <div class="case-body"><p>Mark, 34 — neurological condition affecting mobility and coordination. Difficulty with household tasks, employment, and social participation.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>What areas to assess in the FCA?</li><li>What information is critical for reporting?</li><li>How will findings influence planning?</li></ol></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Core OT services improve independence, safety, and participation</li>
+      <li>FCAs must justify why supports are needed</li>
+      <li>AT should be goal-directed, practical, and sustainable</li>
+      <li>Home modifications prioritise safety and long-term access</li>
+      <li>Capacity building links directly to real-life activities</li>
+      <li>SOAP notes link observations to clinical decisions</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="workshop-divider">
+
+<!-- ══════════ WORKSHOP 6 ══════════ -->
+<div class="page workshop-section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-header-text">
+      <div class="section-label">Workshop Six</div>
+      <div class="section-title">Working in a<br>Multidisciplinary Team</div>
+      <div class="section-purpose">This workshop develops clinicians' ability to recognise when multidisciplinary input is required and how to collaborate effectively when supporting participants with complex needs.</div>
+    </div>
+  </div>
+
+  <div class="objectives-strip">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the role of multidisciplinary care</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply structured thinking when deciding whether to refer</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify referral flags indicating need for other disciplines</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Communicate effectively within a multidisciplinary team</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the roles of key allied health professionals</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Maintain clear scope of practice while collaborating</span></div>
+    </div>
+  </div>
+
+  <!-- Professional Roles -->
+  <div class="part-card full" style="margin-bottom:20px;">
+    <div class="part-label">Part 2</div>
+    <div class="part-title">Understanding Professional Roles</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px;">
+      <div style="background:var(--teal-pale);border-radius:8px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Exercise Physiologist</div>
+        <div style="font-size:12.5px;color:var(--slate);">Strength, endurance, chronic condition management, physical capacity</div>
+      </div>
+      <div style="background:#fff8ed;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#b07a20;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Physiotherapist</div>
+        <div style="font-size:12.5px;color:var(--slate);">Movement, pain management, rehabilitation, gait and balance</div>
+      </div>
+      <div style="background:#eef2ff;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#6366f1;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Psychologist</div>
+        <div style="font-size:12.5px;color:var(--slate);">Mental health, emotional regulation, coping strategies, behaviour change</div>
+      </div>
+      <div style="background:#fff8f0;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#f97316;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Positive Behaviour Support</div>
+        <div style="font-size:12.5px;color:var(--slate);">Behaviours of concern, behaviour planning, environmental strategies</div>
+      </div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#16a34a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Speech Pathologist</div>
+        <div style="font-size:12.5px;color:var(--slate);">Communication, cognitive communication, swallowing</div>
+      </div>
+      <div style="background:#fef9ee;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#b07a20;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Dietitian</div>
+        <div style="font-size:12.5px;color:var(--slate);">Nutrition, energy levels, diet-related health conditions</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:14px;">The goal is not to do everything yourself, but to ensure the participant receives the <strong>right support from the right professional.</strong></div>
+  </div>
+
+  <!-- Referral Flags -->
+  <div class="part-card full" style="margin-bottom:20px;">
+    <div class="part-label">Part 3</div>
+    <div class="part-title">Identifying Referral Flags</div>
+    <div class="flags-grid">
+      <div class="flag-card physical">
+        <h4>Physical</h4>
+        <ul>
+          <li>Reduced strength or endurance</li>
+          <li>Mobility limitations</li>
+          <li>Fatigue limiting participation</li>
+        </ul>
+        <div class="refer-to">→ EP or Physio</div>
+      </div>
+      <div class="flag-card mental">
+        <h4>Mental Health</h4>
+        <ul>
+          <li>Persistent low mood</li>
+          <li>Anxiety affecting participation</li>
+          <li>Avoidance of daily activities</li>
+        </ul>
+        <div class="refer-to">→ Psychology</div>
+      </div>
+      <div class="flag-card behaviour">
+        <h4>Behavioural</h4>
+        <ul>
+          <li>Behaviours impacting safety</li>
+          <li>Difficulty engaging in therapy</li>
+          <li>High caregiver stress</li>
+        </ul>
+        <div class="refer-to">→ PBS</div>
+      </div>
+      <div class="flag-card comms">
+        <h4>Communication</h4>
+        <ul>
+          <li>Difficulty expressing needs</li>
+          <li>Difficulty following instructions</li>
+          <li>Social communication challenges</li>
+        </ul>
+        <div class="refer-to">→ Speech Pathology</div>
+      </div>
+      <div class="flag-card nutrition">
+        <h4>Nutrition / Energy</h4>
+        <ul>
+          <li>Poor dietary intake</li>
+          <li>Low energy levels</li>
+          <li>Significant weight change</li>
+        </ul>
+        <div class="refer-to">→ Dietetics</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision Framework -->
+  <div class="part-card full" style="margin-bottom:20px;">
+    <div class="part-label">Part 4</div>
+    <div class="part-title">Referral Decision Framework</div>
+    <div class="decision-steps" style="margin-bottom:20px;">
+      <div class="decision-step"><div class="step-num">1</div>Is this issue within my scope of practice?</div>
+      <div class="decision-step"><div class="step-num">2</div>Is this issue significantly impacting participation?</div>
+      <div class="decision-step"><div class="step-num">3</div>Would another discipline provide better outcomes?</div>
+      <div class="decision-step"><div class="step-num">4</div>Is additional expertise required for safety or effectiveness?</div>
+    </div>
+    <div class="decision-guide">
+      <div class="dg-item green"><strong>Within scope + manageable</strong><span>Continue OT intervention</span></div>
+      <div class="dg-item amber"><strong>Outside scope or complex</strong><span>Refer or collaborate</span></div>
+      <div class="dg-item grey"><strong>Uncertain</strong><span>Discuss in supervision</span></div>
+    </div>
+    <div class="highlight-box" style="margin-top:14px;">Early referral is often better than delayed referral.</div>
+  </div>
+
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-label">Part 5</div>
+      <div class="part-title">Collaborative Case Management</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">Key strategies:</p>
+        <ul>
+          <li>Share relevant information with team members</li>
+          <li>Align on participant goals</li>
+          <li>Coordinate interventions</li>
+          <li>Avoid duplication of services</li>
+          <li>Maintain consistent messaging</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="part-card gold">
+      <div class="part-label">Part 7</div>
+      <div class="part-title">Maintaining Scope of Practice</div>
+      <div class="part-body">
+        <p style="margin-bottom:10px;font-size:13.5px;color:var(--slate);">While collaborating, clinicians must:</p>
+        <ul>
+          <li>Stay within their professional role</li>
+          <li>Avoid responsibilities outside their expertise</li>
+          <li>Recognise limits early</li>
+        </ul>
+        <div class="highlight-box gold-box" style="margin-top:12px;">Good clinicians know both what to do — and when to involve others.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;">Case-Based Discussion</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 1</div>
+        <div class="case-name">Identifying Referral Needs</div>
+        <div class="case-body"><p>Tom, 50 — neurological condition. Reduced mobility, fatigue, low physical endurance. Wants to increase activity levels but struggles without fatigue.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Factors limiting participation?</li><li>Which disciplines to involve?</li><li>How could collaboration improve outcomes?</li></ol></div>
+      </div>
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 2</div>
+        <div class="case-name">Mental Health Barriers</div>
+        <div class="case-body"><p>Emily, 35 — anxiety about leaving the house, avoidance of activities, difficulty engaging in therapy. Frequently cancels appointments.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>Referral flags present?</li><li>How is mental health impacting participation?</li><li>How could psychology support OT?</li></ol></div>
+      </div>
+      <div class="case-block" style="margin-bottom:0;">
+        <div class="case-tag">Case 3</div>
+        <div class="case-name">Coordinating MDT Care</div>
+        <div class="case-body"><p>James — spinal cord injury. Currently working with OT, exercise physiologist, and support coordinator toward independence at home and community reintegration.</p></div>
+        <div class="discussion-q"><h4>Discuss</h4><ol><li>How to coordinate roles?</li><li>Communication strategies for collaboration?</li><li>How to avoid duplication of services?</li></ol></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>MDT collaboration is essential for complex participants</li>
+      <li>Know the roles of each allied health discipline</li>
+      <li>Recognise referral flags early and act promptly</li>
+      <li>Use a structured framework to guide referral decisions</li>
+      <li>Communicate clearly and consistently across the team</li>
+      <li>The participant experiences coordinated care, not fragmented services</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ── BACK COVER ── -->
+<div class="cover" style="min-height:40vh;justify-content:flex-end;padding:50px 60px;">
+  <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;">
+    <div>
+      <div style="font-family:'Fraunces',serif;font-size:24px;color:var(--white);font-weight:300;">PACE Health Management</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;">OT Training Program · Module 1: Foundations of Practice</div>
+    </div>
+    <div style="font-family:'Fraunces',serif;font-size:16px;color:var(--teal-light);font-style:italic;">Progress, not perfection.</div>
+  </div>
+</div>
+
+</body>
+</html>
