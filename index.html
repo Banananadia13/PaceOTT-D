@@ -777,9 +777,125 @@
     white-space: nowrap;
     flex-shrink: 0;
   }
+
+  /* ── EXPERIENCE CONTROLS ── */
+  .experience-controls {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 50;
+    background: rgba(27,45,69,0.94);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    backdrop-filter: blur(8px);
+  }
+  .mode-btn {
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .mode-btn:hover { border-color: var(--teal-light); color: #fff; }
+  .mode-btn.active {
+    background: var(--teal-light);
+    border-color: var(--teal-light);
+    color: #fff;
+  }
+  .quick-nav {
+    position: fixed;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 48;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+  }
+  .quick-nav a {
+    text-decoration: none;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    border-radius: 7px;
+    padding: 6px 8px;
+    transition: all 0.2s ease;
+  }
+  .quick-nav a:hover,
+  .quick-nav a.active {
+    background: var(--teal-pale);
+    color: var(--teal);
+  }
+  .mode-banner {
+    max-width: 1100px;
+    margin: 18px auto 0;
+    padding: 0 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .mode-banner-inner {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .mode-banner-inner strong { color: var(--navy); }
+
+  /* Mode behavior: supports workshop delivery without changing content */
+  body.mode-slides .part-body p,
+  body.mode-slides .case-body p,
+  body.mode-slides .case-body ul,
+  body.mode-slides .discussion-q ol li:nth-child(n+3) {
+    opacity: 0.72;
+  }
+  body.mode-slides .case-block,
+  body.mode-slides .part-card {
+    box-shadow: 0 8px 22px rgba(14, 38, 64, 0.06);
+  }
+  body.mode-platform .discussion-q,
+  body.mode-platform .case-block,
+  body.mode-platform .decision-step {
+    box-shadow: 0 10px 24px rgba(16, 46, 77, 0.07);
+  }
+  body.mode-platform .mode-banner-inner {
+    border-left: 4px solid var(--teal-light);
+  }
+  @media (max-width: 1280px) {
+    .quick-nav { display: none; }
+  }
 </style>
 </head>
 <body>
+
+<div class="experience-controls" aria-label="Module display controls">
+  <button type="button" class="mode-btn active" data-mode="slides">Presentation View</button>
+  <button type="button" class="mode-btn" data-mode="platform">Learning Platform View</button>
+</div>
+<nav class="quick-nav" aria-label="Quick workshop navigation">
+  <a href="#workshop-1">W01</a>
+  <a href="#workshop-2">W02</a>
+  <a href="#workshop-3">W03</a>
+  <a href="#workshop-4">W04</a>
+  <a href="#workshop-5">W05</a>
+  <a href="#workshop-6">W06</a>
+</nav>
 
 <!-- ══════════ COVER ══════════ -->
 <div class="cover">
@@ -811,6 +927,12 @@
       <div class="workshop-tile"><div class="num">05</div><div class="name">Core OT Services at PACE</div></div>
       <div class="workshop-tile"><div class="num">06</div><div class="name">Working in a Multidisciplinary Team</div></div>
     </div>
+  </div>
+</div>
+
+<div class="mode-banner">
+  <div id="mode-banner-content" class="mode-banner-inner">
+    <strong>Presentation View:</strong> Optimised for facilitation prompts, visuals, and discussion-led delivery.
   </div>
 </div>
 
@@ -870,7 +992,7 @@
 </div>
 
 <!-- ══════════ WORKSHOP 1 ══════════ -->
-<div class="page workshop-section">
+<div class="page workshop-section" id="workshop-1">
   <div class="section-header">
     <div class="section-num">01</div>
     <div class="section-header-text">
@@ -1043,7 +1165,7 @@
 <hr class="workshop-divider">
 
 <!-- ══════════ WORKSHOP 2 ══════════ -->
-<div class="page workshop-section">
+<div class="page workshop-section" id="workshop-2">
   <div class="section-header">
     <div class="section-num">02</div>
     <div class="section-header-text">
@@ -1221,7 +1343,7 @@
 <hr class="workshop-divider">
 
 <!-- ══════════ WORKSHOP 3 ══════════ -->
-<div class="page workshop-section">
+<div class="page workshop-section" id="workshop-3">
   <div class="section-header">
     <div class="section-num">03</div>
     <div class="section-header-text">
@@ -1390,7 +1512,7 @@
 <hr class="workshop-divider">
 
 <!-- ══════════ WORKSHOP 4 ══════════ -->
-<div class="page workshop-section">
+<div class="page workshop-section" id="workshop-4">
   <div class="section-header">
     <div class="section-num">04</div>
     <div class="section-header-text">
@@ -1595,7 +1717,7 @@
 <hr class="workshop-divider">
 
 <!-- ══════════ WORKSHOP 5 ══════════ -->
-<div class="page workshop-section">
+<div class="page workshop-section" id="workshop-5">
   <div class="section-header">
     <div class="section-num">05</div>
     <div class="section-header-text">
@@ -1787,7 +1909,7 @@
 <hr class="workshop-divider">
 
 <!-- ══════════ WORKSHOP 6 ══════════ -->
-<div class="page workshop-section">
+<div class="page workshop-section" id="workshop-6">
   <div class="section-header">
     <div class="section-num">06</div>
     <div class="section-header-text">
@@ -1991,6 +2113,46 @@
     <div style="font-family:'Fraunces',serif;font-size:16px;color:var(--teal-light);font-style:italic;">Progress, not perfection.</div>
   </div>
 </div>
+
+<script>
+  (function () {
+    const body = document.body;
+    const modeButtons = document.querySelectorAll('.mode-btn');
+    const banner = document.getElementById('mode-banner-content');
+    const modeCopy = {
+      slides: '<strong>Presentation View:</strong> Optimised for facilitation prompts, visuals, and discussion-led delivery.',
+      platform: '<strong>Learning Platform View:</strong> Emphasises section-by-section progression, reflection prompts, and case decision activities.'
+    };
+
+    function setMode(mode) {
+      body.classList.remove('mode-slides', 'mode-platform');
+      body.classList.add(mode === 'platform' ? 'mode-platform' : 'mode-slides');
+      modeButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.mode === mode);
+      });
+      banner.innerHTML = modeCopy[mode] || modeCopy.slides;
+    }
+
+    modeButtons.forEach((button) => {
+      button.addEventListener('click', () => setMode(button.dataset.mode));
+    });
+
+    const navLinks = document.querySelectorAll('.quick-nav a');
+    const sections = Array.from(document.querySelectorAll('.workshop-section[id]'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach((section) => observer.observe(section));
+    setMode('slides');
+  })();
+</script>
 
 </body>
 </html>
