@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PACE OT Training Program – Module 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:       #0F5C4D;
+  --green-mid:   #1A7A68;
+  --green-light: #2A9D8B;
+  --green-pale:  #E4F2EF;
+  --green-xpale: #F0F8F6;
+  --sage:        #7FB5AB;
+  --gold:        #D4A843;
+  --gold-pale:   #FBF3E0;
+  --navy:        #1B2D3F;
+  --slate:       #4A5568;
+  --body:        #374151;
+  --border:      #D8EAE6;
+  --bg:          #F7F8F5;
+  --white:       #FFFFFF;
+  --card-shadow: 0 2px 12px rgba(15,92,77,0.08);
+  --card-shadow-hover: 0 6px 24px rgba(15,92,77,0.14);
+  --r:           14px;
+  --r-sm:        8px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--body);
+  font-size:15px;
+  line-height:1.65;
+}
+
+/* ── TOP NAV ── */
+.top-nav {
+  position:sticky; top:0; z-index:100;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 32px;
+  height:56px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.nav-brand {
+  display:flex; align-items:center; gap:10px;
+}
+.nav-logo-box {
+  width:32px; height:32px; border-radius:8px;
+  background:var(--green);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:12px; color:#fff; letter-spacing:0.05em;
+}
+.nav-title {
+  font-weight:700; font-size:13px; color:var(--navy);
+  letter-spacing:0.01em;
+}
+.nav-sub {
+  font-size:11px; color:var(--slate); margin-top:1px;
+}
+.nav-workshops {
+  display:flex; gap:4px; align-items:center;
+}
+.nav-ws {
+  font-size:11px; font-weight:500; color:var(--slate);
+  padding:5px 10px; border-radius:20px; cursor:pointer;
+  transition:all 0.2s; text-decoration:none;
+  border:1px solid transparent;
+}
+.nav-ws:hover { background:var(--green-pale); color:var(--green); }
+.nav-ws.active {
+  background:var(--green); color:#fff;
+  border-color:var(--green);
+}
+
+/* ── HERO COVER ── */
+.hero {
+  background:var(--navy);
+  padding:80px 64px 0;
+  overflow:hidden;
+  position:relative;
+  min-height:520px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+}
+.hero-bg-circles {
+  position:absolute; inset:0; overflow:hidden; pointer-events:none;
+}
+.hero-circle {
+  position:absolute; border-radius:50%;
+  background:rgba(42,157,139,0.12);
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(212,168,67,0.2);
+  border:1px solid rgba(212,168,67,0.4);
+  border-radius:20px; padding:5px 14px;
+  font-size:11px; font-weight:600; color:var(--gold);
+  letter-spacing:0.08em; text-transform:uppercase;
+  margin-bottom:24px; width:fit-content;
+}
+.hero-title {
+  font-family:'Outfit',sans-serif;
+  font-size:56px; font-weight:800; line-height:1.05;
+  color:#fff; margin-bottom:16px; max-width:640px;
+}
+.hero-title span { color:var(--gold); }
+.hero-desc {
+  font-size:15px; color:rgba(255,255,255,0.65);
+  max-width:540px; line-height:1.7; margin-bottom:40px;
+}
+.hero-meta {
+  display:flex; gap:32px; margin-bottom:48px;
+}
+.hero-meta-item label {
+  display:block; font-size:10px; letter-spacing:0.12em;
+  text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:4px;
+}
+.hero-meta-item span {
+  font-size:13px; font-weight:500; color:rgba(255,255,255,0.85);
+}
+.hero-workshop-grid {
+  display:grid; grid-template-columns:repeat(6,1fr); gap:1px;
+  background:rgba(255,255,255,0.08);
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin:0 -64px;
+}
+.hero-ws-tile {
+  padding:20px 20px 24px;
+  background:rgba(15,20,30,0.3);
+  backdrop-filter:blur(4px);
+  cursor:pointer;
+  transition:background 0.2s;
+  text-decoration:none;
+}
+.hero-ws-tile:hover { background:rgba(42,157,139,0.2); }
+.hero-ws-num {
+  font-family:'Lora',serif; font-size:28px; font-weight:400;
+  color:var(--green-light); margin-bottom:6px; line-height:1;
+}
+.hero-ws-name {
+  font-size:11px; color:rgba(255,255,255,0.55); line-height:1.4;
+}
+
+/* ── MODULE OVERVIEW PAGE ── */
+.section-page {
+  max-width:1080px; margin:0 auto; padding:64px 40px;
+}
+.section-page + .section-page {
+  border-top:1px solid var(--border);
+}
+
+/* ── WORKSHOP HEADER ── */
+.ws-header-card {
+  border-radius:var(--r);
+  overflow:hidden;
+  margin-bottom:40px;
+  display:grid; grid-template-columns:1fr auto;
+  align-items:stretch;
+  box-shadow:var(--card-shadow);
+}
+.ws-header-left {
+  background:var(--green);
+  padding:36px 40px;
+  position:relative; overflow:hidden;
+}
+.ws-header-left::after {
+  content:'';
+  position:absolute; right:-40px; top:-40px;
+  width:180px; height:180px; border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  pointer-events:none;
+}
+.ws-num-badge {
+  font-size:10px; font-weight:700; letter-spacing:0.14em;
+  text-transform:uppercase; color:rgba(255,255,255,0.5);
+  margin-bottom:12px;
+}
+.ws-header-title {
+  font-size:28px; font-weight:700; color:#fff;
+  line-height:1.15; margin-bottom:12px;
+}
+.ws-header-purpose {
+  font-size:13.5px; color:rgba(255,255,255,0.72);
+  line-height:1.65; max-width:520px;
+}
+.ws-header-right {
+  background:var(--green-pale);
+  padding:28px 32px;
+  min-width:240px;
+  display:flex; flex-direction:column; justify-content:center; gap:14px;
+}
+.ws-meta-row {
+  display:flex; align-items:center; gap:10px;
+}
+.ws-meta-icon {
+  width:28px; height:28px; border-radius:6px;
+  background:var(--white); display:flex; align-items:center;
+  justify-content:center; font-size:13px; flex-shrink:0;
+  box-shadow:0 1px 4px rgba(0,0,0,0.08);
+}
+.ws-meta-label { font-size:10px; color:var(--slate); }
+.ws-meta-val { font-size:13px; font-weight:600; color:var(--navy); }
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:20px; margin-top:40px;
+}
+.sec-label-num {
+  width:26px; height:26px; border-radius:50%;
+  background:var(--green); color:#fff;
+  font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.sec-label-text {
+  font-size:12px; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--green);
+}
+.sec-label-bar {
+  flex:1; height:1px; background:var(--border);
+}
+
+/* ── OBJECTIVES BOX ── */
+.objectives-box {
+  background:var(--navy);
+  border-radius:var(--r);
+  padding:28px 32px;
+  margin-bottom:32px;
+}
+.objectives-box h3 {
+  font-size:11px; font-weight:700; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:16px;
+}
+.objectives-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:8px;
+}
+.obj-item {
+  display:flex; align-items:flex-start; gap:9px;
+  font-size:13px; color:rgba(255,255,255,0.8); line-height:1.5;
+}
+.obj-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--green-light); flex-shrink:0; margin-top:5px;
+}
+
+/* ── CONTENT CARDS ── */
+.card {
+  background:var(--white);
+  border-radius:var(--r);
+  border:1px solid var(--border);
+  padding:28px;
+  box-shadow:var(--card-shadow);
+  transition:box-shadow 0.2s;
+}
+.card:hover { box-shadow:var(--card-shadow-hover); }
+.card-title {
+  font-size:14px; font-weight:700; color:var(--navy);
+  margin-bottom:12px; display:flex; align-items:center; gap:8px;
+}
+.card-icon {
+  width:28px; height:28px; border-radius:7px;
+  background:var(--green-pale);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; flex-shrink:0;
+}
+.card-body { font-size:13px; color:var(--slate); line-height:1.65; }
+.card-body li {
+  list-style:none; display:flex; gap:8px; padding:3px 0;
+}
+.card-body li::before {
+  content:'→'; color:var(--green-light); font-size:11px;
+  flex-shrink:0; margin-top:2px;
+}
+
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.grid-4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:14px; }
+
+/* ── HIGHLIGHT / CALLOUT ── */
+.callout {
+  border-radius:var(--r-sm);
+  padding:16px 20px;
+  display:flex; gap:12px; align-items:flex-start;
+}
+.callout.teal { background:var(--green-pale); border-left:4px solid var(--green); }
+.callout.gold { background:var(--gold-pale); border-left:4px solid var(--gold); }
+.callout.navy { background:#EEF1F5; border-left:4px solid var(--navy); }
+.callout-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.callout-content { font-size:13px; line-height:1.6; }
+.callout-content strong { color:var(--navy); }
+.callout.teal .callout-content { color:var(--green); }
+.callout.gold .callout-content { color:#7A5010; }
+.callout.navy .callout-content { color:var(--navy); }
+
+/* ── DIAGRAM: BIOPSYCHOSOCIAL ── */
+.bio-diagram {
+  display:flex; align-items:center; justify-content:center;
+  padding:32px; background:var(--white);
+  border-radius:var(--r); border:1px solid var(--border);
+  position:relative; min-height:240px;
+}
+.bio-circles {
+  position:relative; width:280px; height:200px;
+}
+.bio-circle {
+  position:absolute;
+  width:150px; height:150px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; letter-spacing:0.05em;
+  text-align:center; line-height:1.3;
+}
+.bio-circle.bio { background:rgba(15,92,77,0.15); color:var(--green); top:0; left:0; }
+.bio-circle.psy { background:rgba(212,168,67,0.18); color:#7A5010; top:0; right:0; }
+.bio-circle.soc { background:rgba(100,116,139,0.15); color:#334155; bottom:0; left:50%; transform:translateX(-50%); }
+.bio-center {
+  position:absolute; width:52px; height:52px; border-radius:50%;
+  background:var(--green); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px; font-weight:700; text-align:center; line-height:1.3;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  box-shadow:0 2px 8px rgba(15,92,77,0.3);
+}
+
+/* ── DIAGRAM: STAGES FLOW ── */
+.stages-flow {
+  display:flex; align-items:center; gap:0; overflow-x:auto;
+  padding:20px 0;
+}
+.stage-node {
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:8px;
+  position:relative; min-width:90px;
+}
+.stage-node:not(:last-child)::after {
+  content:'→';
+  position:absolute; right:-10px; top:22px;
+  color:var(--sage); font-size:16px; font-weight:300;
+}
+.stage-circle {
+  width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.stage-label {
+  font-size:10.5px; font-weight:600; color:var(--navy);
+  text-align:center; line-height:1.3;
+}
+.stage-desc {
+  font-size:9.5px; color:var(--slate); text-align:center; line-height:1.4;
+}
+
+/* ── DIAGRAM: DECISION LINE ── */
+.decision-line {
+  background:var(--white); border-radius:var(--r);
+  border:1px solid var(--border); padding:28px 32px;
+}
+.dl-track {
+  position:relative; height:8px;
+  background:linear-gradient(90deg, #FEE2E2 0%, #FEF3C7 50%, #D1FAE5 100%);
+  border-radius:4px; margin:24px 0 32px;
+}
+.dl-marker {
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; border-radius:50%;
+  border:3px solid var(--white); box-shadow:0 0 0 2px currentColor;
+}
+.dl-labels {
+  display:flex; justify-content:space-between;
+  font-size:11px; font-weight:600;
+}
+.dl-not-ready { color:#DC2626; }
+.dl-ready { color:#059669; }
+.dl-zones {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;
+}
+.dl-zone {
+  border-radius:var(--r-sm); padding:14px 16px;
+  font-size:12.5px;
+}
+.dl-zone.left { background:#FFF1F1; }
+.dl-zone.right { background:#ECFDF5; }
+.dl-zone h4 { font-size:12px; font-weight:700; margin-bottom:8px; }
+.dl-zone.left h4 { color:#DC2626; }
+.dl-zone.right h4 { color:#059669; }
+.dl-zone ul { list-style:none; }
+.dl-zone li { font-size:12px; color:var(--slate); padding:2px 0; }
+.dl-zone li::before { content:'• '; }
+
+/* ── DIAGRAM: OARS GRID ── */
+.oars-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+}
+.oar-card {
+  border-radius:var(--r-sm);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.oar-header {
+  background:var(--green);
+  padding:10px 16px;
+  display:flex; align-items:center; gap:10px;
+}
+.oar-letter {
+  width:32px; height:32px; border-radius:6px;
+  background:rgba(255,255,255,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:800; color:#fff;
+}
+.oar-name { font-size:13px; font-weight:600; color:#fff; }
+.oar-body { padding:12px 16px; background:var(--white); }
+.oar-desc { font-size:12px; color:var(--slate); margin-bottom:8px; }
+.oar-example {
+  font-size:11.5px; font-style:italic; color:var(--green-mid);
+  background:var(--green-xpale); border-radius:6px;
+  padding:7px 10px; line-height:1.45;
+}
+
+/* ── DIAGRAM: 4-QUADRANT ── */
+.quadrant-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:3px;
+  border-radius:var(--r); overflow:hidden;
+  border:1px solid var(--border);
+}
+.quad-cell {
+  padding:20px; background:var(--white); text-align:center;
+}
+.quad-cell:hover { background:var(--green-xpale); }
+.quad-icon { font-size:28px; margin-bottom:8px; }
+.quad-title {
+  font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px;
+}
+.quad-desc { font-size:12px; color:var(--slate); line-height:1.5; }
+
+/* ── DIAGRAM: MISCONCEPTIONS ── */
+.misconception-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+}
+.mis-card {
+  border-radius:var(--r-sm); padding:18px;
+  border:1px solid var(--border); background:var(--white);
+  position:relative; overflow:hidden;
+}
+.mis-card::before {
+  content:''; position:absolute; top:0; left:0;
+  width:100%; height:3px;
+}
+.mis-card.gap::before { background:#3B82F6; }
+.mis-card.grain::before { background:#F59E0B; }
+.mis-card.castle::before { background:#EF4444; }
+.mis-card.stone::before { background:#8B5CF6; }
+.mis-label {
+  font-size:10px; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; margin-bottom:4px;
+}
+.mis-card.gap .mis-label { color:#3B82F6; }
+.mis-card.grain .mis-label { color:#F59E0B; }
+.mis-card.castle .mis-label { color:#EF4444; }
+.mis-card.stone .mis-label { color:#8B5CF6; }
+.mis-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.mis-desc { font-size:12.5px; color:var(--slate); line-height:1.55; }
+
+/* ── DIAGRAM: SUSTAINABILITY MONITOR ── */
+.monitor-card {
+  background:var(--white); border-radius:var(--r);
+  border:1px solid var(--border); padding:28px;
+  box-shadow:var(--card-shadow);
+}
+.monitor-title {
+  font-size:13px; font-weight:700; color:var(--navy);
+  margin-bottom:20px;
+}
+.monitor-row {
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+}
+.monitor-label {
+  font-size:12px; font-weight:500; color:var(--body);
+  width:80px; flex-shrink:0;
+}
+.monitor-track {
+  flex:1; height:10px; background:#F1F5F9;
+  border-radius:5px; overflow:hidden;
+}
+.monitor-fill {
+  height:100%; border-radius:5px;
+  background:linear-gradient(90deg, var(--green-mid), var(--green));
+  transition:width 0.4s;
+}
+.monitor-fill.amber { background:linear-gradient(90deg, #FBBF24, #F59E0B); }
+.monitor-fill.red { background:linear-gradient(90deg, #F87171, #EF4444); }
+.monitor-score {
+  font-size:12px; font-weight:700; color:var(--navy); width:26px; text-align:right;
+}
+
+/* ── DIAGRAM: BURNOUT PROGRESSION ── */
+.burnout-bar {
+  background:linear-gradient(90deg, #D1FAE5 0%, #FEF3C7 40%, #FEE2E2 75%, #FECACA 100%);
+  border-radius:8px; height:28px; position:relative; margin:20px 0;
+}
+.burnout-labels {
+  display:flex; justify-content:space-between;
+  font-size:11px; font-weight:600; margin-top:8px;
+}
+.burnout-markers {
+  position:absolute; top:0; left:0; right:0; bottom:0;
+  display:flex;
+}
+.burnout-zone {
+  flex:1; border-right:1px solid rgba(255,255,255,0.6);
+  display:flex; align-items:center; justify-content:center;
+  font-size:9.5px; font-weight:600; color:rgba(0,0,0,0.45);
+}
+.burnout-zone:last-child { border-right:none; }
+
+/* ── DIAGRAM: PEO MODEL ── */
+.peo-diagram {
+  display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;
+}
+.peo-card {
+  border-radius:var(--r-sm); padding:20px; text-align:center;
+  border:2px solid transparent; transition:all 0.2s;
+}
+.peo-card:hover { transform:translateY(-2px); }
+.peo-letter {
+  font-size:40px; font-weight:800; line-height:1;
+  margin-bottom:4px;
+}
+.peo-card.person { background:#E8F5F0; border-color:#A7D7CC; }
+.peo-card.person .peo-letter { color:var(--green); }
+.peo-card.env { background:#FFF8EC; border-color:#F5D08A; }
+.peo-card.env .peo-letter { color:#B07820; }
+.peo-card.occ { background:#EEF2FF; border-color:#BFCBFE; }
+.peo-card.occ .peo-letter { color:#4F46E5; }
+.peo-name { font-size:12px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.peo-items { list-style:none; font-size:11.5px; color:var(--slate); text-align:left; }
+.peo-items li { padding:2px 0; }
+.peo-items li::before { content:'· '; }
+
+/* ── DIAGRAM: DRIVER PYRAMID ── */
+.driver-pyramid {
+  display:flex; flex-direction:column; gap:4px; align-items:center;
+  padding:20px;
+}
+.pyramid-row {
+  border-radius:6px; display:flex; align-items:center;
+  justify-content:center; gap:8px;
+  font-weight:600; color:#fff; transition:transform 0.2s;
+}
+.pyramid-row:hover { transform:scaleX(1.02); }
+.pyramid-row.primary   { width:60%; background:var(--green); padding:14px; font-size:14px; }
+.pyramid-row.secondary { width:80%; background:var(--sage); padding:12px; font-size:13px; }
+.pyramid-row.background{ width:100%; background:#CBD5E1; color:var(--slate); padding:10px; font-size:12px; }
+.pyramid-label { font-size:10px; font-weight:400; opacity:0.8; }
+
+/* ── DIAGRAM: DECISION TREE ── */
+.decision-tree {
+  background:var(--white); border-radius:var(--r);
+  border:1px solid var(--border); padding:28px;
+}
+.dt-center {
+  text-align:center; margin-bottom:24px;
+}
+.dt-node {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 20px; border-radius:8px;
+  font-size:13px; font-weight:600;
+}
+.dt-node.problem { background:var(--navy); color:#fff; }
+.dt-arrows {
+  display:flex; justify-content:center; gap:40px;
+  margin-bottom:20px; position:relative;
+}
+.dt-arrows::before {
+  content:''; position:absolute;
+  top:-12px; left:50%; transform:translateX(-50%);
+  width:1px; height:12px; background:var(--border);
+}
+.dt-branch {
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  flex:1;
+}
+.dt-q {
+  font-size:11px; color:var(--slate); text-align:center;
+  background:var(--bg); border-radius:6px; padding:5px 10px;
+}
+.dt-action {
+  padding:10px 16px; border-radius:8px; text-align:center;
+  font-size:12px; font-weight:700; width:100%;
+}
+.dt-action.act { background:#D1FAE5; color:#065F46; }
+.dt-action.trial { background:#FEF3C7; color:#7C3009; }
+.dt-action.refer { background:#EDE9FE; color:#4C1D95; }
+
+/* ── DIAGRAM: REASONING LOOP ── */
+.reasoning-loop {
+  display:flex; align-items:center; justify-content:center;
+  padding:28px; flex-wrap:wrap; gap:8px;
+}
+.loop-node {
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  position:relative;
+}
+.loop-circle {
+  width:80px; height:80px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; color:#fff; text-align:center;
+  line-height:1.25;
+}
+.loop-arrow {
+  font-size:22px; color:var(--sage); align-self:center;
+}
+.loop-last-arrow {
+  font-size:22px; color:var(--sage); transform:rotate(0deg);
+}
+
+/* ── DIAGRAM: OT DECISION FLOWCHART ── */
+.ot-flow {
+  background:var(--white); border-radius:var(--r);
+  border:1px solid var(--border); padding:32px;
+}
+.ot-flow-row {
+  display:flex; align-items:center; gap:12px; margin-bottom:12px;
+}
+.ot-flow-box {
+  border-radius:8px; padding:12px 16px; font-size:12.5px; font-weight:600;
+  text-align:center; flex:1;
+}
+.ot-flow-box.problem { background:var(--navy); color:#fff; }
+.ot-flow-box.driver { background:var(--green-pale); color:var(--green); border:1px solid var(--green-light); }
+.ot-flow-box.at { background:#EDE9FE; color:#4F46E5; }
+.ot-flow-box.hm { background:#FEF3C7; color:#7C3009; }
+.ot-flow-box.fca { background:#D1FAE5; color:#065F46; }
+.ot-flow-box.cap { background:#FCE7F3; color:#831843; }
+.ot-flow-arrow { font-size:18px; color:var(--sage); flex-shrink:0; }
+.ot-flow-branch {
+  display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:10px;
+  margin-top:8px;
+}
+
+/* ── DIAGRAM: SOAP ── */
+.soap-flow {
+  display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px;
+}
+.soap-card {
+  border-radius:var(--r-sm); overflow:hidden;
+  border:1px solid var(--border);
+}
+.soap-header {
+  padding:12px; text-align:center;
+}
+.soap-letter {
+  font-size:32px; font-weight:800; line-height:1; margin-bottom:2px;
+}
+.soap-word { font-size:10px; font-weight:600; letter-spacing:0.08em; color:rgba(255,255,255,0.8); }
+.soap-body { padding:12px; background:var(--white); }
+.soap-body p { font-size:12px; color:var(--slate); margin-bottom:5px; }
+.soap-example { font-size:11px; font-style:italic; color:var(--green-mid); }
+
+/* ── DIAGRAM: SMART GOALS ── */
+.smart-grid {
+  display:grid; grid-template-columns:repeat(5,1fr); gap:10px;
+}
+.smart-tile {
+  border-radius:var(--r-sm); padding:16px 12px; text-align:center;
+  border:1px solid var(--border); background:var(--white);
+  transition:transform 0.2s;
+}
+.smart-tile:hover { transform:translateY(-3px); box-shadow:var(--card-shadow-hover); }
+.smart-letter {
+  font-size:36px; font-weight:800; margin-bottom:4px; line-height:1;
+}
+.smart-word { font-size:11px; font-weight:700; margin-bottom:6px; }
+.smart-desc { font-size:11px; color:var(--slate); line-height:1.4; }
+
+/* ── DIAGRAM: BARRIER→SOLUTION ── */
+.barrier-table {
+  width:100%; border-collapse:separate; border-spacing:0;
+  border-radius:var(--r); overflow:hidden; border:1px solid var(--border);
+}
+.barrier-table th {
+  padding:12px 20px; font-size:11px; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase;
+}
+.barrier-table th.barrier-col { background:#FEE2E2; color:#DC2626; }
+.barrier-table th.solution-col { background:#D1FAE5; color:#065F46; }
+.barrier-table td {
+  padding:12px 20px; font-size:13px; color:var(--body);
+  background:var(--white); border-top:1px solid var(--border);
+  vertical-align:top;
+}
+.barrier-table td.b { border-right:1px solid var(--border); }
+
+/* ── DIAGRAM: MDT MAP ── */
+.mdt-map {
+  display:flex; align-items:center; justify-content:center;
+  padding:24px; position:relative; min-height:220px;
+  flex-wrap:wrap; gap:16px;
+}
+.mdt-center-node {
+  width:100px; height:100px; border-radius:50%;
+  background:var(--green); color:#fff;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; text-align:center; line-height:1.3;
+  box-shadow:0 4px 16px rgba(15,92,77,0.3);
+  flex-shrink:0;
+}
+.mdt-ring {
+  display:flex; flex-direction:column; gap:10px;
+}
+.mdt-discipline {
+  border-radius:var(--r-sm); padding:10px 14px;
+  font-size:12px; font-weight:600; color:#fff; text-align:center;
+  min-width:120px;
+}
+
+/* ── CASE STUDY ── */
+.case-card {
+  border-radius:var(--r);
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--card-shadow);
+  margin-bottom:20px;
+}
+.case-header {
+  background:var(--navy); padding:18px 24px;
+  display:flex; align-items:center; gap:14px;
+}
+.case-badge {
+  background:var(--gold); color:var(--navy);
+  font-size:10px; font-weight:700; letter-spacing:0.1em;
+  padding:4px 10px; border-radius:4px; text-transform:uppercase;
+  flex-shrink:0;
+}
+.case-title { font-size:15px; font-weight:700; color:#fff; }
+.case-body { background:var(--white); padding:24px; }
+.case-scenario {
+  font-size:13.5px; color:var(--body); line-height:1.7;
+  margin-bottom:20px;
+}
+.case-discussion {
+  background:var(--green-xpale);
+  border-radius:var(--r-sm); padding:16px 20px;
+}
+.case-discussion h4 {
+  font-size:11px; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--green); margin-bottom:12px;
+}
+.case-discussion ol { padding-left:18px; }
+.case-discussion li {
+  font-size:13px; color:var(--body); padding:4px 0; line-height:1.6;
+}
+
+/* ── TAKEAWAYS ── */
+.takeaways-box {
+  background:linear-gradient(135deg, var(--green) 0%, #0A4A3D 100%);
+  border-radius:var(--r); padding:32px 36px; margin-top:40px;
+}
+.takeaways-box h3 {
+  font-size:11px; font-weight:700; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:16px;
+}
+.takeaways-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px 32px;
+}
+.takeaway-item {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:13px; color:rgba(255,255,255,0.85); line-height:1.5;
+}
+.takeaway-item::before {
+  content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; margin-top:1px;
+}
+
+/* ── MODULE FLOW ── */
+.module-flow {
+  display:grid; grid-template-columns:repeat(6,1fr); gap:0;
+  border-radius:var(--r); overflow:hidden; border:1px solid var(--border);
+  margin-bottom:40px;
+}
+.module-flow-step {
+  padding:24px 16px; background:var(--white);
+  border-right:1px solid var(--border); text-align:center;
+  text-decoration:none; transition:background 0.2s;
+  position:relative;
+}
+.module-flow-step:last-child { border-right:none; }
+.module-flow-step:hover { background:var(--green-xpale); }
+.module-flow-step.current { background:var(--green-pale); }
+.mf-num {
+  font-size:22px; font-weight:800; color:var(--green);
+  margin-bottom:6px; line-height:1;
+}
+.mf-title { font-size:11px; font-weight:600; color:var(--navy); line-height:1.35; }
+.mf-sub { font-size:10px; color:var(--slate); margin-top:4px; }
+.mf-arrow {
+  position:absolute; right:-10px; top:50%; transform:translateY(-50%);
+  font-size:16px; color:var(--sage); z-index:1;
+}
+
+/* ── WORK-BACKWARDS ── */
+.wb-flow {
+  display:flex; flex-direction:column; gap:4px;
+}
+.wb-row {
+  border-radius:8px; padding:14px 20px;
+  display:flex; align-items:center; gap:14px;
+  font-size:13px; font-weight:600;
+  transition:transform 0.2s;
+}
+.wb-row:hover { transform:translateX(4px); }
+.wb-row.ideal { background:var(--green); color:#fff; }
+.wb-row.steps { background:var(--green-pale); color:var(--green); border:1px solid var(--border); }
+.wb-row.current { background:var(--bg); color:var(--slate); border:1px solid var(--border); }
+.wb-icon { font-size:20px; }
+.wb-connector { width:3px; height:20px; background:var(--border); margin-left:22px; }
+
+/* ── TIMELINE ── */
+.timeline-bar {
+  display:flex; align-items:stretch; border-radius:var(--r);
+  overflow:hidden; border:1px solid var(--border); margin-bottom:20px;
+}
+.timeline-seg {
+  flex:1; padding:14px 10px; text-align:center;
+  border-right:1px solid rgba(255,255,255,0.3);
+  transition:opacity 0.2s;
+}
+.timeline-seg:last-child { border-right:none; }
+.ts-time { font-size:10px; font-weight:700; margin-bottom:4px; }
+.ts-label { font-size:10.5px; line-height:1.35; }
+
+/* ── NOTES AREA ── */
+.notes-area {
+  border-radius:var(--r-sm); border:2px dashed var(--border);
+  background:var(--white); padding:20px;
+  min-height:80px; margin-top:12px;
+}
+.notes-label {
+  font-size:10px; font-weight:600; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--sage); margin-bottom:10px;
+}
+.notes-line {
+  border-bottom:1px solid var(--border); height:24px; margin-bottom:4px;
+}
+
+/* ── PAGE BREAK ── */
+.ws-divider {
+  border:none; border-top:2px solid var(--border);
+  margin:60px 0;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--sage); border-radius:3px; }
+
+/* ── BACK COVER ── */
+.back-cover {
+  background:var(--navy);
+  padding:60px 64px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.bc-left {}
+.bc-right { text-align:right; }
+
+@media print {
+  .top-nav { display:none; }
+  .hero-ws-tile, .module-flow-step { break-inside:avoid; }
+  .ws-divider { page-break-before:always; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<nav class="top-nav">
+  <div class="nav-brand">
+    <div class="nav-logo-box">P</div>
+    <div>
+      <div class="nav-title">PACE Health Management</div>
+      <div class="nav-sub">OT Training Program · Module 1</div>
+    </div>
+  </div>
+  <div class="nav-workshops">
+    <a href="#ws1" class="nav-ws active">W1 Foundations</a>
+    <a href="#ws2" class="nav-ws">W2 Behaviour</a>
+    <a href="#ws3" class="nav-ws">W3 Sustainability</a>
+    <a href="#ws4" class="nav-ws">W4 Reasoning</a>
+    <a href="#ws5" class="nav-ws">W5 Decisions</a>
+    <a href="#ws6" class="nav-ws">W6 MDT &amp; Goals</a>
+  </div>
+</nav>
+
+<!-- ── HERO COVER ── -->
+<div class="hero">
+  <div class="hero-bg-circles">
+    <div class="hero-circle" style="width:400px;height:400px;top:-120px;right:-80px;"></div>
+    <div class="hero-circle" style="width:200px;height:200px;bottom:40px;left:20%;opacity:0.5;"></div>
+  </div>
+  <div class="hero-badge">🧠 Training &amp; Development Program</div>
+  <h1 class="hero-title">PACE OT<br>Training <span>Program</span></h1>
+  <p class="hero-desc">A structured six-workshop training program for early-career Occupational Therapists at PACE Health Management — building clinical skills, reasoning frameworks, and sustainable practice habits.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><label>Module</label><span>Module 1: Foundations of Practice</span></div>
+    <div class="hero-meta-item"><label>Workshops</label><span>6 Sessions · 60 min each</span></div>
+    <div class="hero-meta-item"><label>Audience</label><span>Early-Career Occupational Therapists</span></div>
+    <div class="hero-meta-item"><label>Context</label><span>Community / NDIS Settings</span></div>
+  </div>
+  <div class="hero-workshop-grid">
+    <a class="hero-ws-tile" href="#ws1"><div class="hero-ws-num">01</div><div class="hero-ws-name">The PACE Way — Foundations</div></a>
+    <a class="hero-ws-tile" href="#ws2"><div class="hero-ws-num">02</div><div class="hero-ws-name">Motivational Interviewing &amp; Behaviour Change</div></a>
+    <a class="hero-ws-tile" href="#ws3"><div class="hero-ws-num">03</div><div class="hero-ws-name">Sustaining Clinical Performance</div></a>
+    <a class="hero-ws-tile" href="#ws4"><div class="hero-ws-num">04</div><div class="hero-ws-name">Clinical Reasoning in OT</div></a>
+    <a class="hero-ws-tile" href="#ws5"><div class="hero-ws-num">05</div><div class="hero-ws-name">Clinical Decision-Making</div></a>
+    <a class="hero-ws-tile" href="#ws6"><div class="hero-ws-num">06</div><div class="hero-ws-name">MDT &amp; Goal Setting</div></a>
+  </div>
+</div>
+
+<!-- ── MODULE OVERVIEW ── -->
+<div class="section-page">
+  <div class="sec-label" style="margin-top:0;">
+    <div class="sec-label-text" style="font-size:18px;letter-spacing:0;">Module 1 Overview</div>
+    <div class="sec-label-bar"></div>
+  </div>
+  <p style="font-size:14px;color:var(--slate);max-width:700px;margin-bottom:32px;line-height:1.7;">Module 1 builds the essential foundations every PACE OT needs — from understanding complex participants and supporting behaviour change, to maintaining clinical sustainability and making structured decisions.</p>
+
+  <div class="module-flow">
+    <a class="module-flow-step current" href="#ws1">
+      <div class="mf-num">01</div>
+      <div class="mf-title">The PACE Way</div>
+      <div class="mf-sub">Foundations</div>
+    </a>
+    <a class="module-flow-step" href="#ws2">
+      <div class="mf-num">02</div>
+      <div class="mf-title">Behaviour Change</div>
+      <div class="mf-sub">MI + Engagement</div>
+    </a>
+    <a class="module-flow-step" href="#ws3">
+      <div class="mf-num">03</div>
+      <div class="mf-title">Sustainability</div>
+      <div class="mf-sub">Burnout Prevention</div>
+    </a>
+    <a class="module-flow-step" href="#ws4">
+      <div class="mf-num">04</div>
+      <div class="mf-title">Clinical Reasoning</div>
+      <div class="mf-sub">PEO + Drivers</div>
+    </a>
+    <a class="module-flow-step" href="#ws5">
+      <div class="mf-num">05</div>
+      <div class="mf-title">Decision-Making</div>
+      <div class="mf-sub">AT · HM · FCA</div>
+    </a>
+    <a class="module-flow-step" href="#ws6">
+      <div class="mf-num">06</div>
+      <div class="mf-title">MDT &amp; Goals</div>
+      <div class="mf-sub">Collaboration + Plans</div>
+    </a>
+  </div>
+
+  <div class="grid-2" style="gap:14px;">
+    <div class="card">
+      <div class="card-title">🎯 Who This Program Is For</div>
+      <div class="card-body"><ul>
+        <li>Early-career OTs joining PACE Health Management</li>
+        <li>Clinicians working in community and NDIS settings</li>
+        <li>OTs transitioning from other clinical environments</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📐 How This Program Works</div>
+      <div class="card-body"><ul>
+        <li>6 facilitated workshops — 60 minutes each</li>
+        <li>Case-based learning throughout every session</li>
+        <li>Structured reflection and practical application</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP 1
+═══════════════════════════════════════════════ -->
+<div id="ws1" class="section-page">
+  <div class="ws-header-card">
+    <div class="ws-header-left">
+      <div class="ws-num-badge">Workshop 01 of 06</div>
+      <div class="ws-header-title">The PACE Way —<br>Foundations of Clinical Practice</div>
+      <div class="ws-header-purpose">Introduces the PACE philosophy, the biopsychosocial model, the difference between complex and complicated presentations, and the principles of ethical care. Establishes the importance of clinician sustainability.</div>
+    </div>
+    <div class="ws-header-right">
+      <div class="ws-meta-row">
+        <div class="ws-meta-icon">⏱</div>
+        <div><div class="ws-meta-label">Duration</div><div class="ws-meta-val">60 minutes</div></div>
+      </div>
+      <div class="ws-meta-row">
+        <div class="ws-meta-icon">📋</div>
+        <div><div class="ws-meta-label">Sections</div><div class="ws-meta-val">9 Parts + Cases</div></div>
+      </div>
+      <div class="ws-meta-row">
+        <div class="ws-meta-icon">💡</div>
+        <div><div class="ws-meta-label">Focus</div><div class="ws-meta-val">Foundations &amp; Frameworks</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Timeline -->
+  <div class="timeline-bar" style="margin-bottom:32px;">
+    <div class="timeline-seg" style="background:#E4F2EF;"><div class="ts-time" style="color:var(--green);">0–5 min</div><div class="ts-label" style="color:var(--green);">Welcome &amp; intro</div></div>
+    <div class="timeline-seg" style="background:#EEF0F4;"><div class="ts-time" style="color:var(--navy);">5–20 min</div><div class="ts-label" style="color:var(--slate);">Parts 1–3: Role, reality, progress</div></div>
+    <div class="timeline-seg" style="background:#EEF0F4;"><div class="ts-time" style="color:var(--navy);">20–35 min</div><div class="ts-label" style="color:var(--slate);">Parts 4–6: BPS, complexity, ethics</div></div>
+    <div class="timeline-seg" style="background:#EEF0F4;"><div class="ts-time" style="color:var(--navy);">35–45 min</div><div class="ts-label" style="color:var(--slate);">Parts 7–8: Sustainability &amp; expectations</div></div>
+    <div class="timeline-seg" style="background:#FBF3E0;"><div class="ts-time" style="color:#B07820;">45–58 min</div><div class="ts-label" style="color:#7A5010;">Case-based discussion</div></div>
+    <div class="timeline-seg" style="background:#E4F2EF;"><div class="ts-time" style="color:var(--green);">58–60 min</div><div class="ts-label" style="color:var(--green);">Takeaways &amp; close</div></div>
+  </div>
+
+  <!-- Learning Objectives -->
+  <div class="objectives-box">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the role of an OT at PACE and how it differs from traditional models</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply a biopsychosocial approach to understanding client presentations</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise what the first session should aim to achieve</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Differentiate between complicated and complex problems</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand how therapy progresses and why outcomes are often non-linear</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify and apply key principles of ethical care</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise the importance of clinician sustainability and self-monitoring</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Manage client expectations and focus on long-term outcomes</span></div>
+    </div>
+  </div>
+
+  <!-- Part 1 & 2 -->
+  <div class="sec-label"><div class="sec-label-num">1</div><div class="sec-label-text">The Role of an OT at PACE &amp; Reality of Community Practice</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🏥</div>Part 1: What OTs at PACE Do</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;color:var(--body);">OTs support participants to improve:</p>
+        <ul>
+          <li>Independence in daily activities</li>
+          <li>Safety within their environment</li>
+          <li>Participation in meaningful activities</li>
+          <li>Overall quality of life</li>
+        </ul>
+        <div style="margin-top:12px;">
+          <p style="margin-bottom:8px;color:var(--body);">Achieved through:</p>
+          <ul>
+            <li>Functional assessments</li>
+            <li>Environmental &amp; home modifications</li>
+            <li>Assistive technology</li>
+            <li>Capacity building interventions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🌐</div>Part 2: Reality of Community Practice</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;color:var(--body);">Participants rarely present with a single isolated issue. They often have:</p>
+        <ul>
+          <li>Multiple diagnoses or conditions</li>
+          <li>Environmental and social barriers</li>
+          <li>Mental health challenges</li>
+          <li>Limited or inconsistent supports</li>
+          <li>Complex family or living situations</li>
+        </ul>
+        <div class="callout teal" style="margin-top:14px;">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">Progress is often <strong>non-linear</strong> — dependent on multiple interacting variables. Clinicians must be comfortable with complexity.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 3 -->
+  <div class="sec-label"><div class="sec-label-num">2</div><div class="sec-label-text">Progress Over Perfection</div><div class="sec-label-bar"></div></div>
+  <div class="grid-3">
+    <div class="card" style="text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">🐢</div>
+      <div class="card-title" style="justify-content:center;">Small, Incremental</div>
+      <div class="card-body">Progress occurs through consistent, small improvements — not sudden leaps.</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">🔄</div>
+      <div class="card-title" style="justify-content:center;">Layer Over Time</div>
+      <div class="card-body">Interventions are introduced, tested, and built upon — not delivered all at once.</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">🎯</div>
+      <div class="card-title" style="justify-content:center;">Identify Priority Areas</div>
+      <div class="card-body">Break goals into manageable steps and reinforce small wins to build consistency.</div>
+    </div>
+  </div>
+
+  <!-- Part 4: Biopsychosocial -->
+  <div class="sec-label"><div class="sec-label-num">3</div><div class="sec-label-text">Biopsychosocial Approach</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="bio-diagram">
+      <div class="bio-circles">
+        <div class="bio-circle bio">Biological<br><span style="font-weight:400;font-size:10px;">Sleep · Fatigue · Health</span></div>
+        <div class="bio-circle psy">Psychological<br><span style="font-weight:400;font-size:10px;">Beliefs · Stress · Mood</span></div>
+        <div class="bio-circle soc">Social<br><span style="font-weight:400;font-size:10px;">Support · Environment · Context</span></div>
+        <div class="bio-center">Client<br>Experience</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🔬</div>Why This Model Matters</div>
+      <div class="card-body">
+        <p style="margin-bottom:12px;">Pain and disability are not solely the result of tissue damage. They are shaped by context including beliefs, previous experiences, stress, and social support.</p>
+        <p style="margin-bottom:10px;font-weight:600;color:var(--navy);">A BPS approach allows clinicians to:</p>
+        <ul>
+          <li>Understand the full context of a participant's presentation</li>
+          <li>Identify multiple contributing factors</li>
+          <li>Move beyond single-cause explanations</li>
+          <li>Tailor interventions more effectively</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 5: Complicated vs Complex -->
+  <div class="sec-label"><div class="sec-label-num">4</div><div class="sec-label-text">Complicated vs Complex Presentations</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2">
+    <div class="card" style="border-top:3px solid #3B82F6;">
+      <div class="card-title"><span style="font-size:20px;">🔧</span> Complicated</div>
+      <div class="card-body">
+        <ul>
+          <li>Difficult but follows predictable patterns</li>
+          <li>Can be addressed with clear rules or processes</li>
+          <li>Tends to have consistent outcomes when managed correctly</li>
+          <li>Example: mechanical or procedural tasks</li>
+        </ul>
+        <div class="callout navy" style="margin-top:12px;">
+          <div class="callout-icon">⚙️</div>
+          <div class="callout-content"><strong>Think:</strong> A task with many steps — but each step is known.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green);">
+      <div class="card-title"><span style="font-size:20px;">🕸️</span> Complex <span style="font-size:11px;font-weight:400;color:var(--slate);">— Most PACE Participants</span></div>
+      <div class="card-body">
+        <ul>
+          <li>Multiple interacting variables</li>
+          <li>No single clear solution</li>
+          <li>Produces unpredictable outcomes</li>
+          <li>Requires ongoing adaptation</li>
+        </ul>
+        <div class="callout teal" style="margin-top:12px;">
+          <div class="callout-icon">🧩</div>
+          <div class="callout-content"><strong>Shift from:</strong> "solving" problems → learning to manage, trial, and adapt over time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 6: Ethical Model -->
+  <div class="sec-label"><div class="sec-label-num">5</div><div class="sec-label-text">Ethical Model of Care</div><div class="sec-label-bar"></div></div>
+  <div class="grid-4">
+    <div class="card" style="text-align:center;border-top:3px solid #059669;">
+      <div style="font-size:28px;margin-bottom:8px;">🛡️</div>
+      <div class="card-title" style="justify-content:center;font-size:13px;">Non-maleficence</div>
+      <div class="card-body" style="font-size:12px;">Avoid unnecessary harm. Do not reinforce beliefs that increase dependency.</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #3B82F6;">
+      <div style="font-size:28px;margin-bottom:8px;">❤️</div>
+      <div class="card-title" style="justify-content:center;font-size:13px;">Beneficence</div>
+      <div class="card-body" style="font-size:12px;">Act in the participant's best interest. Support meaningful, long-term outcomes.</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #F59E0B;">
+      <div style="font-size:28px;margin-bottom:8px;">🗳️</div>
+      <div class="card-title" style="justify-content:center;font-size:13px;">Autonomy</div>
+      <div class="card-body" style="font-size:12px;">Support participants to make their own decisions. Encourage independence, not reliance.</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #8B5CF6;">
+      <div style="font-size:28px;margin-bottom:8px;">📋</div>
+      <div class="card-title" style="justify-content:center;font-size:13px;">Informed Consent</div>
+      <div class="card-body" style="font-size:12px;">Ensure participants understand their options, timelines, and realistic expectations.</div>
+    </div>
+  </div>
+
+  <!-- Part 7: Sustainability -->
+  <div class="sec-label"><div class="sec-label-num">6</div><div class="sec-label-text">Clinician Sustainability &amp; Self-Monitoring</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="monitor-card">
+      <div class="monitor-title">📊 Monthly Sustainability Check-In (Rate 0–10)</div>
+      <div class="monitor-row"><span class="monitor-label">Workload</span><div class="monitor-track"><div class="monitor-fill" style="width:70%;"></div></div><span class="monitor-score">7</span></div>
+      <div class="monitor-row"><span class="monitor-label">Stress</span><div class="monitor-track"><div class="monitor-fill amber" style="width:55%;"></div></div><span class="monitor-score">5.5</span></div>
+      <div class="monitor-row"><span class="monitor-label">Sleep</span><div class="monitor-track"><div class="monitor-fill" style="width:80%;"></div></div><span class="monitor-score">8</span></div>
+      <div class="monitor-row"><span class="monitor-label">Diet</span><div class="monitor-track"><div class="monitor-fill" style="width:65%;"></div></div><span class="monitor-score">6.5</span></div>
+      <div class="monitor-row"><span class="monitor-label">Social</span><div class="monitor-track"><div class="monitor-fill" style="width:75%;"></div></div><span class="monitor-score">7.5</span></div>
+      <p style="font-size:11px;color:var(--slate);margin-top:14px;">Review regularly. Scores below 5 in any domain may signal early risk. Discuss in supervision.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">⚡</div>Why Clinician Capacity Matters</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;">High workload and fatigue may lead to:</p>
+        <ul>
+          <li>Reduced patience with complex participants</li>
+          <li>Increased reliance on quick solutions</li>
+          <li>Less effective communication</li>
+          <li>Missed key information in sessions</li>
+        </ul>
+        <div class="callout gold" style="margin-top:14px;">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-content"><strong>Regular monitoring</strong> allows clinicians to identify early signs of burnout, adjust workload, and seek support before performance is affected.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cases -->
+  <div class="sec-label"><div class="sec-label-num">7</div><div class="sec-label-text">Case-Based Discussion</div><div class="sec-label-bar"></div></div>
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-badge">Case 1</div>
+      <div class="case-title">Managing Multiple Goals &amp; Expectations</div>
+    </div>
+    <div class="case-body">
+      <p class="case-scenario">A participant presents with multiple goals — improving mobility, increasing independence at home, and accessing the community. They expect all concerns to be addressed within the first few sessions.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>How would you prioritise intervention areas in this situation?</li>
+          <li>How would you structure the first session with this participant?</li>
+          <li>How would you manage expectations while maintaining engagement?</li>
+          <li>What would success look like for the initial stages of therapy?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-badge">Case 2</div>
+      <div class="case-title">Complex Presentation with Previous Disengagement</div>
+    </div>
+    <div class="case-body">
+      <p class="case-scenario">A participant presents with reduced functional capacity, environmental barriers within the home, and low motivation. They have previously disengaged from services and report feeling overwhelmed.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What factors are contributing to the complexity of this presentation?</li>
+          <li>How do physical, psychological, and environmental factors interact?</li>
+          <li>Where would you begin intervention?</li>
+          <li>How would you approach engagement and build trust?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways-box">
+    <h3>Key Takeaways</h3>
+    <div class="takeaways-grid">
+      <div class="takeaway-item">Occupational therapy at PACE requires a flexible, client-centred approach</div>
+      <div class="takeaway-item">A biopsychosocial approach provides a more complete picture of presentations</div>
+      <div class="takeaway-item">Most participants present with complex, not complicated, challenges</div>
+      <div class="takeaway-item">Ethical care underpins all clinical decision-making at PACE</div>
+      <div class="takeaway-item">Progress is gradual and achieved through layered intervention over time</div>
+      <div class="takeaway-item">Clinician sustainability is essential for consistent, high-quality care</div>
+    </div>
+  </div>
+</div>
+
+<hr class="ws-divider">
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP 2
+═══════════════════════════════════════════════ -->
+<div id="ws2" class="section-page">
+  <div class="ws-header-card">
+    <div class="ws-header-left">
+      <div class="ws-num-badge">Workshop 02 of 06</div>
+      <div class="ws-header-title">Motivational Interviewing<br>&amp; Behaviour Change</div>
+      <div class="ws-header-purpose">Develops effective communication skills to support behaviour change. Covers MI techniques, stages of change, the decision line, OARS skills, laws of behaviour change, and understanding misconceptions.</div>
+    </div>
+    <div class="ws-header-right">
+      <div class="ws-meta-row"><div class="ws-meta-icon">⏱</div><div><div class="ws-meta-label">Duration</div><div class="ws-meta-val">60 minutes</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">📋</div><div><div class="ws-meta-label">Sections</div><div class="ws-meta-val">8 Parts + Cases</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">💡</div><div><div class="ws-meta-label">Focus</div><div class="ws-meta-val">Communication &amp; Engagement</div></div></div>
+    </div>
+  </div>
+
+  <div class="objectives-box">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the principles of motivational interviewing</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply practical tools to support behaviour change and engagement</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify a participant's stage of behaviour change</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify and respond to common misconceptions</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Adapt communication approach based on readiness</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply strategies that promote autonomy and long-term participation</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Use the decision line to guide clinical approach</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Reduce resistance and improve therapeutic relationships</span></div>
+    </div>
+  </div>
+
+  <!-- Stages of Change -->
+  <div class="sec-label"><div class="sec-label-num">1</div><div class="sec-label-text">Stages of Behaviour Change</div><div class="sec-label-bar"></div></div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-title"><div class="card-icon">🔄</div>The Change Cycle — Participants Move Forwards and Backwards</div>
+    <div class="stages-flow">
+      <div class="stage-node">
+        <div class="stage-circle" style="background:#94A3B8;">Pre-<br>think</div>
+        <div class="stage-label">Precontemplation</div>
+        <div class="stage-desc">Not yet considering change</div>
+      </div>
+      <div class="stage-node">
+        <div class="stage-circle" style="background:#F59E0B;">🤔</div>
+        <div class="stage-label">Contemplation</div>
+        <div class="stage-desc">Aware but unsure</div>
+      </div>
+      <div class="stage-node">
+        <div class="stage-circle" style="background:#3B82F6;">📝</div>
+        <div class="stage-label">Preparation</div>
+        <div class="stage-desc">Beginning to plan</div>
+      </div>
+      <div class="stage-node">
+        <div class="stage-circle" style="background:var(--green);">🚀</div>
+        <div class="stage-label">Action</div>
+        <div class="stage-desc">Actively making changes</div>
+      </div>
+      <div class="stage-node">
+        <div class="stage-circle" style="background:#059669;">✅</div>
+        <div class="stage-label">Maintenance</div>
+        <div class="stage-desc">Sustaining new behaviours</div>
+      </div>
+    </div>
+    <div class="callout teal" style="margin-top:8px;">
+      <div class="callout-icon">💡</div>
+      <div class="callout-content">Understanding the stage allows clinicians to <strong>tailor their approach appropriately</strong>. Attempting the same approach across all stages leads to resistance and disengagement.</div>
+    </div>
+  </div>
+
+  <!-- Decision Line -->
+  <div class="sec-label"><div class="sec-label-num">2</div><div class="sec-label-text">The Decision Line</div><div class="sec-label-bar"></div></div>
+  <div class="decision-line">
+    <div class="dl-labels">
+      <span class="dl-not-ready">← NOT READY</span>
+      <span style="color:var(--slate);font-size:11px;font-weight:500;">CLINICIAN ASSESSES READINESS</span>
+      <span class="dl-ready">READY →</span>
+    </div>
+    <div class="dl-track">
+      <div class="dl-marker" style="left:25%;color:#DC2626;background:#DC2626;"></div>
+      <div class="dl-marker" style="left:75%;color:#059669;background:#059669;"></div>
+    </div>
+    <div class="dl-zones">
+      <div class="dl-zone left">
+        <h4>❌ Not Ready for Action</h4>
+        <ul>
+          <li>Build understanding and insight</li>
+          <li>Explore concerns and fears</li>
+          <li>Support reflection and awareness</li>
+          <li>Don't push action — it creates resistance</li>
+        </ul>
+      </div>
+      <div class="dl-zone right">
+        <h4>✅ Ready for Action</h4>
+        <ul>
+          <li>Move to planning and goal setting</li>
+          <li>Implement strategies collaboratively</li>
+          <li>Build on momentum with small wins</li>
+          <li>Reinforce and review progress</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OARS -->
+  <div class="sec-label"><div class="sec-label-num">3</div><div class="sec-label-text">Core MI Skills — OARS</div><div class="sec-label-bar"></div></div>
+  <div class="oars-grid">
+    <div class="oar-card">
+      <div class="oar-header"><div class="oar-letter">O</div><div class="oar-name">Open Questions</div></div>
+      <div class="oar-body">
+        <p class="oar-desc">Encourage exploration and discussion. Avoid yes/no answers.</p>
+        <div class="oar-example">"What would you like to be able to do more independently?"</div>
+      </div>
+    </div>
+    <div class="oar-card">
+      <div class="oar-header"><div class="oar-letter">A</div><div class="oar-name">Affirmations</div></div>
+      <div class="oar-body">
+        <p class="oar-desc">Recognise the participant's strengths and efforts genuinely.</p>
+        <div class="oar-example">"You've already made some important progress — that takes real effort."</div>
+      </div>
+    </div>
+    <div class="oar-card">
+      <div class="oar-header"><div class="oar-letter">R</div><div class="oar-name">Reflective Listening</div></div>
+      <div class="oar-body">
+        <p class="oar-desc">Demonstrate understanding and build therapeutic rapport.</p>
+        <div class="oar-example">"It sounds like you want to be more independent, but you're worried about making things worse."</div>
+      </div>
+    </div>
+    <div class="oar-card">
+      <div class="oar-header"><div class="oar-letter">S</div><div class="oar-name">Summaries</div></div>
+      <div class="oar-body">
+        <p class="oar-desc">Clarify and reinforce key points from the conversation.</p>
+        <div class="oar-example">"So improving your confidence at home is really important to you right now."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Laws of Behaviour Change -->
+  <div class="sec-label"><div class="sec-label-num">4</div><div class="sec-label-text">Laws of Behaviour Change</div><div class="sec-label-bar"></div></div>
+  <div class="quadrant-grid">
+    <div class="quad-cell">
+      <div class="quad-icon">👁️</div>
+      <div class="quad-title">Obvious</div>
+      <div class="quad-desc">Clearly understood and visible. Participants know what to do and when.</div>
+    </div>
+    <div class="quad-cell">
+      <div class="quad-icon">🪶</div>
+      <div class="quad-title">Easy</div>
+      <div class="quad-desc">Achievable within the participant's current capacity. Low barrier to starting.</div>
+    </div>
+    <div class="quad-cell">
+      <div class="quad-icon">😊</div>
+      <div class="quad-title">Enjoyable</div>
+      <div class="quad-desc">Aligned with participant interests and preferences. They want to do it.</div>
+    </div>
+    <div class="quad-cell">
+      <div class="quad-icon">🏆</div>
+      <div class="quad-title">Satisfying</div>
+      <div class="quad-desc">Provides a sense of achievement or reward. Creates positive reinforcement.</div>
+    </div>
+  </div>
+
+  <!-- Misconceptions -->
+  <div class="sec-label"><div class="sec-label-num">5</div><div class="sec-label-text">Understanding &amp; Addressing Misconceptions</div><div class="sec-label-bar"></div></div>
+  <div class="misconception-grid">
+    <div class="mis-card gap">
+      <div class="mis-label">Type 1</div>
+      <div class="mis-title">🕳️ Missing Gap</div>
+      <div class="mis-desc">Lack of understanding or information. The participant hasn't been given the full picture to make sense of their situation.</div>
+    </div>
+    <div class="mis-card grain">
+      <div class="mis-label">Type 2</div>
+      <div class="mis-title">🌾 Single Grain</div>
+      <div class="mis-desc">Focusing on one piece of information without wider context. One experience or statement becomes the entire belief.</div>
+    </div>
+    <div class="mis-card castle">
+      <div class="mis-label">Type 3</div>
+      <div class="mis-title">🏰 Sandcastle</div>
+      <div class="mis-desc">Unstable beliefs built on incorrect assumptions. Can shift with the right approach, but may crumble under direct challenge.</div>
+    </div>
+    <div class="mis-card stone">
+      <div class="mis-label">Type 4</div>
+      <div class="mis-title">🪨 Sandstone</div>
+      <div class="mis-desc">Deeply ingrained and resistant beliefs. Requires sustained, empathetic engagement and gradual linking to meaningful goals.</div>
+    </div>
+  </div>
+  <div class="callout gold" style="margin-top:14px;">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-content"><strong>Key principle:</strong> Challenging beliefs directly may lead to resistance. Guide participants toward new understanding through discussion, reflection, and linking to their own goals.</div>
+  </div>
+
+  <!-- Cases -->
+  <div class="sec-label"><div class="sec-label-num">6</div><div class="sec-label-text">Case-Based Discussion</div><div class="sec-label-bar"></div></div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 1</div><div class="case-title">Low Engagement &amp; Feeling Overwhelmed</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant presents with reduced engagement in therapy and expresses low motivation. They report feeling overwhelmed and unsure whether therapy will help.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What stage of behaviour change might this participant be in?</li>
+          <li>What factors may be contributing to their disengagement?</li>
+          <li>How would you approach this conversation using motivational interviewing?</li>
+          <li>What would be an appropriate next step?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 2</div><div class="case-title">Intention Without Follow-Through</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant expresses a strong desire to improve independence but becomes hesitant when discussing specific strategies. They frequently agree during sessions but do not follow through.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What might be contributing to the gap between intention and action?</li>
+          <li>What stage of change might this participant be in?</li>
+          <li>What misconceptions or barriers may be present?</li>
+          <li>How could you adapt your approach to support follow-through?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways-box">
+    <h3>Key Takeaways</h3>
+    <div class="takeaways-grid">
+      <div class="takeaway-item">Behaviour change is a process that occurs over time, not a single event</div>
+      <div class="takeaway-item">Tasks are more likely to succeed when they are obvious, easy, enjoyable and satisfying</div>
+      <div class="takeaway-item">Clinicians must adapt approach based on the participant's readiness</div>
+      <div class="takeaway-item">Understanding and addressing misconceptions is critical for improving engagement</div>
+      <div class="takeaway-item">Not all participants are ready for action — this should guide intervention</div>
+      <div class="takeaway-item">Effective communication builds trust and supports long-term outcomes</div>
+    </div>
+  </div>
+</div>
+
+<hr class="ws-divider">
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP 3
+═══════════════════════════════════════════════ -->
+<div id="ws3" class="section-page">
+  <div class="ws-header-card">
+    <div class="ws-header-left">
+      <div class="ws-num-badge">Workshop 03 of 06</div>
+      <div class="ws-header-title">Sustaining Clinical Performance<br>&amp; Preventing Burnout</div>
+      <div class="ws-header-purpose">Builds on Workshop 1 by introducing a structured approach to clinician sustainability. Covers monitoring key domains, understanding burnout progression, the biopsychosocial view of clinician health, and workload management strategies.</div>
+    </div>
+    <div class="ws-header-right">
+      <div class="ws-meta-row"><div class="ws-meta-icon">⏱</div><div><div class="ws-meta-label">Duration</div><div class="ws-meta-val">60 minutes</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">📋</div><div><div class="ws-meta-label">Sections</div><div class="ws-meta-val">9 Parts + Cases</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">💡</div><div><div class="ws-meta-label">Focus</div><div class="ws-meta-val">Wellbeing &amp; Sustainability</div></div></div>
+    </div>
+  </div>
+
+  <div class="objectives-box">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the impact of clinician wellbeing on clinical performance and outcomes</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Implement strategies to manage workload and emotional demands</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise early signs and risk factors for burnout</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Maintain professional boundaries and prioritise effectively</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Monitor key domains of health using a structured framework</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Develop habits that support long-term sustainability in practice</span></div>
+    </div>
+  </div>
+
+  <!-- Part 1: Why Sustainability Matters -->
+  <div class="sec-label"><div class="sec-label-num">1</div><div class="sec-label-text">Why Sustainability Matters in Clinical Practice</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">⚠️</div>When Clinicians Are Overwhelmed</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;">Clinicians who are fatigued or overwhelmed are more likely to:</p>
+        <ul>
+          <li>Miss key information in sessions</li>
+          <li>Over- or under-prescribe interventions</li>
+          <li>Avoid difficult conversations</li>
+          <li>Experience reduced confidence in decisions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🌱</div>Sustainability Is a Clinical Skill</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;">Sustainability is not just about wellbeing — it is about maintaining <strong>consistent, high-quality clinical performance over time.</strong></p>
+        <div class="callout teal">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">Maintaining clinician sustainability directly supports better participant outcomes — not just better clinician wellbeing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 2: Burnout Progression -->
+  <div class="sec-label"><div class="sec-label-num">2</div><div class="sec-label-text">Understanding Burnout — The Progression</div><div class="sec-label-bar"></div></div>
+  <div class="card">
+    <div class="card-title"><div class="card-icon">📉</div>Burnout Develops Gradually — Catch It Early</div>
+    <div class="burnout-bar">
+      <div class="burnout-markers">
+        <div class="burnout-zone">Thriving</div>
+        <div class="burnout-zone">Managing</div>
+        <div class="burnout-zone">Stressed</div>
+        <div class="burnout-zone">Fatigued</div>
+        <div class="burnout-zone">Burnout</div>
+      </div>
+    </div>
+    <div class="burnout-labels">
+      <span style="color:#059669;">Thriving</span>
+      <span style="color:#10B981;">Managing</span>
+      <span style="color:#F59E0B;">Stressed</span>
+      <span style="color:#EF4444;">Fatigued</span>
+      <span style="color:#DC2626;">Burnout</span>
+    </div>
+    <div class="grid-3" style="margin-top:20px;">
+      <div class="callout teal"><div class="callout-icon">😴</div><div class="callout-content"><strong>Physical:</strong> Fatigue, sleep issues, frequent illness, low energy</div></div>
+      <div class="callout gold"><div class="callout-icon">🧠</div><div class="callout-content"><strong>Psychological:</strong> Reduced motivation, difficulty concentrating, cynicism</div></div>
+      <div class="callout navy"><div class="callout-icon">🔌</div><div class="callout-content"><strong>Behavioural:</strong> Withdrawing, overworking, increased errors, reduced empathy</div></div>
+    </div>
+  </div>
+
+  <!-- Part 3: BPS for Clinician -->
+  <div class="sec-label"><div class="sec-label-num">3</div><div class="sec-label-text">A Biopsychosocial View of Clinician Health</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="bio-diagram">
+      <div class="bio-circles">
+        <div class="bio-circle bio">Biological<br><span style="font-weight:400;font-size:10px;">Sleep · Fatigue · Physical Health</span></div>
+        <div class="bio-circle psy">Psychological<br><span style="font-weight:400;font-size:10px;">Stress · Emotional Load · Cognitive Fatigue</span></div>
+        <div class="bio-circle soc">Social<br><span style="font-weight:400;font-size:10px;">Workload · Support Systems · Workplace</span></div>
+        <div class="bio-center">Clinician Performance</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🔗</div>How These Domains Interact</div>
+      <div class="card-body">
+        <p style="margin-bottom:12px;">Just as we understand participants through a biopsychosocial lens, clinician wellbeing can be considered across the same three domains.</p>
+        <ul>
+          <li><strong>Biological:</strong> Sleep quality, fatigue levels, physical health and recovery</li>
+          <li><strong>Psychological:</strong> Stress, emotional load from complex cases, decision fatigue</li>
+          <li><strong>Social:</strong> Caseload demands, support from peers and supervisors, workplace culture</li>
+        </ul>
+        <div class="callout teal" style="margin-top:12px;">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">Understanding these <strong>interacting factors</strong> allows clinicians to identify where changes are needed and address them proactively.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 4: Monitoring Dashboard -->
+  <div class="sec-label"><div class="sec-label-num">4</div><div class="sec-label-text">Monitoring Clinical Sustainability</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="monitor-card">
+      <div class="monitor-title">📊 Monthly Sustainability Dashboard (0–10)</div>
+      <div class="monitor-row"><span class="monitor-label">Workload</span><div class="monitor-track"><div class="monitor-fill red" style="width:85%;"></div></div><span class="monitor-score">8.5</span></div>
+      <div class="monitor-row"><span class="monitor-label">Stress</span><div class="monitor-track"><div class="monitor-fill amber" style="width:70%;"></div></div><span class="monitor-score">7</span></div>
+      <div class="monitor-row"><span class="monitor-label">Sleep</span><div class="monitor-track"><div class="monitor-fill amber" style="width:50%;"></div></div><span class="monitor-score">5</span></div>
+      <div class="monitor-row"><span class="monitor-label">Diet</span><div class="monitor-track"><div class="monitor-fill" style="width:65%;"></div></div><span class="monitor-score">6.5</span></div>
+      <div class="monitor-row"><span class="monitor-label">Social</span><div class="monitor-track"><div class="monitor-fill amber" style="width:40%;"></div></div><span class="monitor-score">4</span></div>
+      <p style="font-size:11px;color:#DC2626;margin-top:14px;font-weight:500;">⚠️ This example shows early warning signs — workload and social scores need attention.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🎯</div>How to Use This Tool</div>
+      <div class="card-body">
+        <ul>
+          <li>Rate each domain honestly on a 0–10 scale</li>
+          <li>Review at least monthly, or after difficult periods</li>
+          <li>Look for patterns and downward trends</li>
+          <li>Discuss in supervision when scores drop below 5</li>
+          <li>Act on early warning signs — don't wait for crisis</li>
+        </ul>
+        <div class="callout gold" style="margin-top:14px;">
+          <div class="callout-icon">📅</div>
+          <div class="callout-content"><strong>Regular monitoring</strong> supports early identification of risk, targeted adjustments, and ongoing self-awareness.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parts 5-7: Workload, Emotional Load, Boundaries -->
+  <div class="sec-label"><div class="sec-label-num">5</div><div class="sec-label-text">Managing Workload, Emotional Load &amp; Boundaries</div><div class="sec-label-bar"></div></div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">📋</div>Workload Management</div>
+      <div class="card-body">
+        <ul>
+          <li>Focus on high-impact tasks first</li>
+          <li>Break complex tasks into manageable steps</li>
+          <li>Schedule dedicated documentation time</li>
+          <li>Allow buffer time between sessions</li>
+          <li>Balance efficiency with quality of care</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">💛</div>Managing Emotional Load</div>
+      <div class="card-body">
+        <ul>
+          <li>Recognise emotional responses as they arise</li>
+          <li>Reflect on experiences — use supervision</li>
+          <li>Seek support before load becomes unmanageable</li>
+          <li>Maintain professional boundaries consistently</li>
+        </ul>
+        <div class="callout gold" style="margin-top:10px;padding:10px 14px;">
+          <div class="callout-content" style="font-size:12px;">Ignoring emotional load over time is a primary driver of burnout.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🔒</div>Setting Boundaries</div>
+      <div class="card-body">
+        <ul>
+          <li>Define realistic session goals upfront</li>
+          <li>Avoid over-commitment with participants</li>
+          <li>Maintain appropriate communication limits</li>
+          <li>Recognise when to refer or seek support</li>
+        </ul>
+        <div class="callout teal" style="margin-top:10px;padding:10px 14px;">
+          <div class="callout-content" style="font-size:12px;">Boundaries protect both clinician wellbeing AND the quality of care delivered.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cases -->
+  <div class="sec-label"><div class="sec-label-num">6</div><div class="sec-label-text">Case-Based Discussion</div><div class="sec-label-bar"></div></div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 1</div><div class="case-title">High Caseload, Fatigue &amp; Decision Confidence</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A clinician is managing a high caseload and reports feeling increasingly fatigued. They are struggling to complete documentation and feel less confident in their clinical decision-making.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What factors may be contributing to this situation?</li>
+          <li>Which domains of the sustainability framework may be impacted?</li>
+          <li>What early warning signs are present in this scenario?</li>
+          <li>What strategies could be implemented to improve this clinician's situation?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 2</div><div class="case-title">Emotional Drain &amp; Boundary Difficulties</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A clinician reports feeling emotionally drained after working with participants with complex behavioural needs. They are finding it difficult to maintain boundaries and feel personally responsible for participant outcomes.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What aspects of emotional load are present in this scenario?</li>
+          <li>How might this impact the clinician's clinical practice?</li>
+          <li>What strategies could support better boundary setting?</li>
+          <li>When might additional support or supervision be required?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways-box">
+    <h3>Key Takeaways</h3>
+    <div class="takeaways-grid">
+      <div class="takeaway-item">Sustainability is essential for maintaining high-quality clinical performance</div>
+      <div class="takeaway-item">A biopsychosocial approach applies equally to clinician wellbeing</div>
+      <div class="takeaway-item">Burnout develops gradually — identify and act on early signs</div>
+      <div class="takeaway-item">Clear boundaries support both clinician wellbeing and participant outcomes</div>
+      <div class="takeaway-item">Structured monitoring helps identify and address issues proactively</div>
+      <div class="takeaway-item">Sustainability underpins effective reasoning, behaviour change, and planning</div>
+    </div>
+  </div>
+</div>
+
+<hr class="ws-divider">
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP 4
+═══════════════════════════════════════════════ -->
+<div id="ws4" class="section-page">
+  <div class="ws-header-card">
+    <div class="ws-header-left">
+      <div class="ws-num-badge">Workshop 04 of 06</div>
+      <div class="ws-header-title">Clinical Reasoning<br>in OT Practice</div>
+      <div class="ws-header-purpose">Develops structured clinical reasoning skills. Covers the PEO model, identifying primary and secondary drivers, prioritisation and decision-making, and linking clinical reasoning to behaviour change.</div>
+    </div>
+    <div class="ws-header-right">
+      <div class="ws-meta-row"><div class="ws-meta-icon">⏱</div><div><div class="ws-meta-label">Duration</div><div class="ws-meta-val">60 minutes</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">📋</div><div><div class="ws-meta-label">Sections</div><div class="ws-meta-val">8 Parts + Cases</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">💡</div><div><div class="ws-meta-label">Focus</div><div class="ws-meta-val">Structured Decision-Making</div></div></div>
+    </div>
+  </div>
+
+  <div class="objectives-box">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply structured clinical reasoning frameworks in practice</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Make clear decisions about intervention, trialling, or referral</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify and prioritise key drivers of disability</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Link clinical reasoning to behaviour change and engagement</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Differentiate between primary and secondary contributing factors</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Avoid overcomplicating presentations by focusing on what matters most</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Use the PEO model to guide assessment and interpretation</span></div>
+    </div>
+  </div>
+
+  <!-- PEO Model -->
+  <div class="sec-label"><div class="sec-label-num">1</div><div class="sec-label-text">The PEO Model</div><div class="sec-label-bar"></div></div>
+  <div class="peo-diagram" style="margin-bottom:16px;">
+    <div class="peo-card person">
+      <div class="peo-letter">P</div>
+      <div class="peo-name">Person</div>
+      <ul class="peo-items">
+        <li>Physical abilities</li>
+        <li>Cognitive capacity</li>
+        <li>Emotional factors</li>
+        <li>Health conditions</li>
+      </ul>
+    </div>
+    <div class="peo-card env">
+      <div class="peo-letter">E</div>
+      <div class="peo-name">Environment</div>
+      <ul class="peo-items">
+        <li>Physical environment</li>
+        <li>Social supports</li>
+        <li>Accessibility</li>
+        <li>Cultural context</li>
+      </ul>
+    </div>
+    <div class="peo-card occ">
+      <div class="peo-letter">O</div>
+      <div class="peo-name">Occupation</div>
+      <ul class="peo-items">
+        <li>Meaningful activities</li>
+        <li>Daily tasks</li>
+        <li>Roles and routines</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout teal">
+    <div class="callout-icon">🎯</div>
+    <div class="callout-content"><strong>Clinical reasoning involves identifying where the mismatch is occurring</strong> — between the person, their environment, and the occupation. This guides intervention selection.</div>
+  </div>
+
+  <!-- Driver Hierarchy -->
+  <div class="sec-label"><div class="sec-label-num">2</div><div class="sec-label-text">Identifying Key Drivers — The Driver Hierarchy</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="card">
+      <div class="driver-pyramid">
+        <div class="pyramid-row primary">🎯 PRIMARY DRIVER <span class="pyramid-label">— Main factor limiting performance</span></div>
+        <div class="wb-connector"></div>
+        <div class="pyramid-row secondary">🔶 SECONDARY DRIVERS <span class="pyramid-label">— Contributing factors</span></div>
+        <div class="wb-connector"></div>
+        <div class="pyramid-row background">⬜ BACKGROUND FACTORS <span class="pyramid-label">— Relevant but not immediately actionable</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🍳</div>Example: Difficulty Preparing Meals</div>
+      <div class="card-body">
+        <p style="margin-bottom:12px;">A participant struggling with meal preparation may have multiple contributing factors:</p>
+        <ul>
+          <li>Reduced grip strength</li>
+          <li>Fatigue limiting standing tolerance</li>
+          <li>Poor kitchen setup and equipment</li>
+          <li>Low confidence and fear of failure</li>
+        </ul>
+        <div class="callout gold" style="margin-top:12px;">
+          <div class="callout-icon">❓</div>
+          <div class="callout-content"><strong>Key question:</strong> "Which of these is the main factor limiting performance right now?" Identify the primary driver first.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reasoning Loop -->
+  <div class="sec-label"><div class="sec-label-num">3</div><div class="sec-label-text">The Clinical Reasoning Loop</div><div class="sec-label-bar"></div></div>
+  <div class="card">
+    <div class="reasoning-loop">
+      <div class="loop-node">
+        <div class="loop-circle" style="background:var(--green);">Assess</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-node">
+        <div class="loop-circle" style="background:#3B82F6;">Interpret</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-node">
+        <div class="loop-circle" style="background:#F59E0B;">Act</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-node">
+        <div class="loop-circle" style="background:#8B5CF6;">Review</div>
+      </div>
+      <div class="loop-arrow" style="font-size:18px;color:var(--sage);">↩</div>
+    </div>
+    <div class="grid-4" style="margin-top:16px;gap:12px;">
+      <div style="text-align:center;padding:10px;background:var(--green-xpale);border-radius:8px;"><div style="font-size:11px;font-weight:700;color:var(--green);">ASSESS</div><div style="font-size:11px;color:var(--slate);">Gather information. Use PEO to explore all domains.</div></div>
+      <div style="text-align:center;padding:10px;background:#EFF6FF;border-radius:8px;"><div style="font-size:11px;font-weight:700;color:#3B82F6;">INTERPRET</div><div style="font-size:11px;color:var(--slate);">Identify primary driver. Link factors to function.</div></div>
+      <div style="text-align:center;padding:10px;background:#FFFBEB;border-radius:8px;"><div style="font-size:11px;font-weight:700;color:#D97706;">ACT</div><div style="font-size:11px;color:var(--slate);">Intervene, trial, or refer. Target the primary driver.</div></div>
+      <div style="text-align:center;padding:10px;background:#F5F3FF;border-radius:8px;"><div style="font-size:11px;font-weight:700;color:#7C3AED;">REVIEW</div><div style="font-size:11px;color:var(--slate);">Evaluate outcomes. Adjust approach as needed.</div></div>
+    </div>
+  </div>
+
+  <!-- Decision Tree -->
+  <div class="sec-label"><div class="sec-label-num">4</div><div class="sec-label-text">Decision Tree — Act, Trial, or Refer?</div><div class="sec-label-bar"></div></div>
+  <div class="decision-tree">
+    <div class="dt-center">
+      <div class="dt-node problem">Problem Identified via Clinical Reasoning</div>
+    </div>
+    <div class="dt-arrows">
+      <div class="dt-branch">
+        <div class="dt-q">Strong evidence of benefit + clear clinical need + safety concern</div>
+        <div class="dt-action act">✅ Act — Intervene Directly</div>
+      </div>
+      <div class="dt-branch">
+        <div class="dt-q">Participant unsure + multiple options + benefit unclear + high cost</div>
+        <div class="dt-action trial">🔬 Trial — Test the Approach First</div>
+      </div>
+      <div class="dt-branch">
+        <div class="dt-q">Outside OT scope + specialist expertise needed + safety risk without input</div>
+        <div class="dt-action refer">↗ Refer — Involve Another Discipline</div>
+      </div>
+    </div>
+    <div class="callout teal" style="margin-top:16px;">
+      <div class="callout-icon">💡</div>
+      <div class="callout-content"><strong>Also consider:</strong> Is the participant ready to engage with this intervention? What stage of change are they in? This links directly to Workshop 2.</div>
+    </div>
+  </div>
+
+  <!-- Cases -->
+  <div class="sec-label"><div class="sec-label-num">5</div><div class="sec-label-text">Case-Based Discussion</div><div class="sec-label-bar"></div></div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 1</div><div class="case-title">Applying the PEO Model — Reduced Capacity &amp; Environmental Barriers</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant presents with reduced physical capacity, significant environmental barriers at home, and low motivation. They have previously disengaged from services. They want to improve independence but are not sure where to start.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>How would you apply the PEO model to analyse this presentation?</li>
+          <li>What is the primary driver of difficulty in this case?</li>
+          <li>What secondary and background factors are present?</li>
+          <li>Would you act, trial, or refer — and why?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 2</div><div class="case-title">Linking Reasoning to Behaviour Change</div></div>
+    <div class="case-body">
+      <p class="case-scenario">You have identified the primary driver of a participant's difficulties. However, when you present your clinical reasoning, the participant appears disengaged and says "I've tried things before and they never work."</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What type of misconception might this participant have?</li>
+          <li>What stage of behaviour change are they likely in?</li>
+          <li>How would you link your clinical reasoning to their stated goals?</li>
+          <li>What MI skills would you use in this conversation?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways-box">
+    <h3>Key Takeaways</h3>
+    <div class="takeaways-grid">
+      <div class="takeaway-item">Clinical reasoning is the foundation of targeted, effective intervention</div>
+      <div class="takeaway-item">The reasoning loop — Assess, Interpret, Act, Review — guides structured thinking</div>
+      <div class="takeaway-item">Use the PEO model to identify where the mismatch is occurring</div>
+      <div class="takeaway-item">Always link reasoning to the participant's readiness for change</div>
+      <div class="takeaway-item">Identify the primary driver first — don't address everything at once</div>
+      <div class="takeaway-item">Clear decisions (act/trial/refer) reduce unnecessary interventions</div>
+    </div>
+  </div>
+</div>
+
+<hr class="ws-divider">
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP 5
+═══════════════════════════════════════════════ -->
+<div id="ws5" class="section-page">
+  <div class="ws-header-card">
+    <div class="ws-header-left">
+      <div class="ws-num-badge">Workshop 05 of 06</div>
+      <div class="ws-header-title">Clinical Decision-Making<br>in Core OT Practice Areas</div>
+      <div class="ws-header-purpose">Applies clinical reasoning to real-world OT service delivery. Covers selecting pathways (AT, HM, FCA, Capacity Building), structured decision frameworks, SOAP documentation, and aligning interventions with functional outcomes.</div>
+    </div>
+    <div class="ws-header-right">
+      <div class="ws-meta-row"><div class="ws-meta-icon">⏱</div><div><div class="ws-meta-label">Duration</div><div class="ws-meta-val">60 minutes</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">📋</div><div><div class="ws-meta-label">Sections</div><div class="ws-meta-val">10 Parts + Cases</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">💡</div><div><div class="ws-meta-label">Focus</div><div class="ws-meta-val">Service Pathways &amp; Documentation</div></div></div>
+    </div>
+  </div>
+
+  <div class="objectives-box">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Select appropriate OT service pathways based on clinical reasoning</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Integrate SOAP documentation into clinical thinking</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand AT, HM, and FCA processes and when each is appropriate</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Align interventions with functional outcomes and participant goals</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Apply structured decision-making frameworks to service selection</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand how documentation reflects and supports clinical reasoning</span></div>
+    </div>
+  </div>
+
+  <!-- OT Decision Flowchart -->
+  <div class="sec-label"><div class="sec-label-num">1</div><div class="sec-label-text">The OT Decision Flowchart — Problem to Pathway</div><div class="sec-label-bar"></div></div>
+  <div class="ot-flow">
+    <div class="ot-flow-row">
+      <div class="ot-flow-box problem">🔍 Functional Problem Identified</div>
+    </div>
+    <div class="ot-flow-row" style="justify-content:center;">
+      <span style="font-size:20px;color:var(--sage);">↓</span>
+    </div>
+    <div class="ot-flow-row">
+      <div class="ot-flow-box driver">🎯 Identify Primary Driver (use PEO + Driver Hierarchy)</div>
+    </div>
+    <div class="ot-flow-row" style="justify-content:center;">
+      <span style="font-size:20px;color:var(--sage);">↓</span>
+    </div>
+    <p style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate);text-align:center;margin-bottom:12px;">Select the Most Appropriate Pathway</p>
+    <div class="ot-flow-branch">
+      <div class="ot-flow-box at">🦽 Assistive Technology<br><span style="font-size:10px;font-weight:400;">Equipment to support participation &amp; independence</span></div>
+      <div class="ot-flow-box hm">🏠 Home Modifications<br><span style="font-size:10px;font-weight:400;">Environmental changes for safety &amp; access</span></div>
+      <div class="ot-flow-box fca">📋 Functional Capacity Assessment<br><span style="font-size:10px;font-weight:400;">Detailed assessment to justify supports</span></div>
+      <div class="ot-flow-box cap">💪 Capacity Building<br><span style="font-size:10px;font-weight:400;">Skill development for long-term independence</span></div>
+    </div>
+    <div class="ot-flow-row" style="justify-content:center;margin-top:12px;">
+      <span style="font-size:20px;color:var(--sage);">↓</span>
+    </div>
+    <div class="ot-flow-row">
+      <div class="ot-flow-box driver" style="text-align:center;">📄 Document in SOAP Format → Link Problem → Driver → Intervention → Outcome</div>
+    </div>
+  </div>
+
+  <!-- Service Comparison Grid -->
+  <div class="sec-label"><div class="sec-label-num">2</div><div class="sec-label-text">Service Area Comparison</div><div class="sec-label-bar"></div></div>
+  <div class="grid-4">
+    <div class="card" style="border-top:3px solid #4F46E5;">
+      <div class="card-title" style="font-size:13px;"><span>🦽</span> Assistive Technology</div>
+      <div class="card-body" style="font-size:12px;">
+        <p style="margin-bottom:8px;color:var(--navy);font-weight:600;">Use when:</p>
+        <ul><li>Equipment supports participation</li><li>Independence can be gained with aids</li><li>Trial before formal prescription</li></ul>
+        <p style="margin-top:8px;color:var(--navy);font-weight:600;">Low vs High Cost:</p>
+        <ul><li>Low: simpler, quicker</li><li>High: detailed assessment, funding required</li></ul>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid #D97706;">
+      <div class="card-title" style="font-size:13px;"><span>🏠</span> Home Modifications</div>
+      <div class="card-body" style="font-size:12px;">
+        <p style="margin-bottom:8px;color:var(--navy);font-weight:600;">Use when:</p>
+        <ul><li>Environmental barriers are the primary driver</li><li>Safety risk is present</li><li>Long-term access improvement needed</li></ul>
+        <p style="margin-top:8px;color:var(--navy);font-weight:600;">Consider:</p>
+        <ul><li>Safety &amp; accessibility</li><li>Participant goals &amp; feasibility</li></ul>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid #059669;">
+      <div class="card-title" style="font-size:13px;"><span>📋</span> FCA</div>
+      <div class="card-body" style="font-size:12px;">
+        <p style="margin-bottom:8px;color:var(--navy);font-weight:600;">Use when:</p>
+        <ul><li>NDIS support justification needed</li><li>Complex functional picture</li><li>Multiple domains to assess</li></ul>
+        <p style="margin-top:8px;color:var(--navy);font-weight:600;">Must clearly:</p>
+        <ul><li>Justify why supports are needed</li><li>Link findings to function</li></ul>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid #BE185D;">
+      <div class="card-title" style="font-size:13px;"><span>💪</span> Capacity Building</div>
+      <div class="card-body" style="font-size:12px;">
+        <p style="margin-bottom:8px;color:var(--navy);font-weight:600;">Use when:</p>
+        <ul><li>Participant has potential to build skills</li><li>Confidence or routine is the main barrier</li><li>Long-term independence is the goal</li></ul>
+        <p style="margin-top:8px;color:var(--navy);font-weight:600;">Most effective when:</p>
+        <ul><li>Linked to meaningful real-life goals</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOAP Notes -->
+  <div class="sec-label"><div class="sec-label-num">3</div><div class="sec-label-text">SOAP Note Documentation</div><div class="sec-label-bar"></div></div>
+  <div class="soap-flow">
+    <div class="soap-card">
+      <div class="soap-header" style="background:var(--green);">
+        <div class="soap-letter">S</div>
+        <div class="soap-word">SUBJECTIVE</div>
+      </div>
+      <div class="soap-body">
+        <p>What the participant reports</p>
+        <div class="soap-example">"Reports increased fatigue when cooking — needs to rest after 5 minutes."</div>
+      </div>
+    </div>
+    <div class="soap-card">
+      <div class="soap-header" style="background:#3B82F6;">
+        <div class="soap-letter">O</div>
+        <div class="soap-word">OBJECTIVE</div>
+      </div>
+      <div class="soap-body">
+        <p>What you clinically observe</p>
+        <div class="soap-example">Required rest breaks after 5 min standing. Reduced grip strength bilaterally.</div>
+      </div>
+    </div>
+    <div class="soap-card">
+      <div class="soap-header" style="background:#F59E0B;">
+        <div class="soap-letter">A</div>
+        <div class="soap-word">ASSESSMENT</div>
+      </div>
+      <div class="soap-body">
+        <p>Your clinical interpretation</p>
+        <div class="soap-example">Fatigue + reduced grip is limiting meal preparation and independence at home.</div>
+      </div>
+    </div>
+    <div class="soap-card">
+      <div class="soap-header" style="background:#8B5CF6;">
+        <div class="soap-letter">P</div>
+        <div class="soap-word">PLAN</div>
+      </div>
+      <div class="soap-body">
+        <p>Next steps — linked to findings</p>
+        <div class="soap-example">Trial seated meal prep + energy conservation strategies. Review in 2 sessions.</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout teal" style="margin-top:14px;">
+    <div class="callout-icon">📄</div>
+    <div class="callout-content"><strong>Documentation should clearly link:</strong> what is happening → why it matters → what will be done next. This is what makes SOAP notes clinically meaningful.</div>
+  </div>
+
+  <!-- Cases -->
+  <div class="sec-label"><div class="sec-label-num">4</div><div class="sec-label-text">Case-Based Discussion</div><div class="sec-label-bar"></div></div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 1</div><div class="case-title">Selecting the Right Pathway — Showering Difficulty</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant is struggling with showering due to reduced mobility and fatigue. The home environment is not well set up — the shower has a high step and there are no grab rails. They are nervous about falling.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What is the primary driver of difficulty in this case?</li>
+          <li>Which intervention pathway(s) are most appropriate and why?</li>
+          <li>What factors need to be considered when making recommendations?</li>
+          <li>How would you document this using a SOAP note?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 2</div><div class="case-title">Capacity vs Equipment — Meal Preparation</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant reports difficulty preparing meals but demonstrates reasonable capacity when supported. They lack confidence and consistency — they know how to do the task but avoid it due to fear of making mistakes.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What is the primary barrier — functional capacity, environment, or confidence?</li>
+          <li>Which pathway is most appropriate — AT, HM, or capacity building?</li>
+          <li>How would you structure intervention to build confidence gradually?</li>
+          <li>How does behaviour change (Workshop 2) link to this case?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways-box">
+    <h3>Key Takeaways</h3>
+    <div class="takeaways-grid">
+      <div class="takeaway-item">Intervention selection should be guided by clinical reasoning, not habit</div>
+      <div class="takeaway-item">Documentation reflects and supports clinical reasoning — not just admin</div>
+      <div class="takeaway-item">AT, HM, FCA and capacity building each serve distinct purposes</div>
+      <div class="takeaway-item">Interventions should always align with meaningful participant outcomes</div>
+      <div class="takeaway-item">Identifying the primary driver is critical for effective service selection</div>
+      <div class="takeaway-item">Clear decision-making improves efficiency, consistency and quality of care</div>
+    </div>
+  </div>
+</div>
+
+<hr class="ws-divider">
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP 6
+═══════════════════════════════════════════════ -->
+<div id="ws6" class="section-page">
+  <div class="ws-header-card">
+    <div class="ws-header-left">
+      <div class="ws-num-badge">Workshop 06 of 06</div>
+      <div class="ws-header-title">Working in a Multidisciplinary Team<br>&amp; Goal Setting</div>
+      <div class="ws-header-purpose">Focuses on collaboration and translating clinical reasoning into action. Covers MDT roles, referral needs, SMART goal setting, working backwards from ideal outcomes, identifying barriers, and creating practical action plans.</div>
+    </div>
+    <div class="ws-header-right">
+      <div class="ws-meta-row"><div class="ws-meta-icon">⏱</div><div><div class="ws-meta-label">Duration</div><div class="ws-meta-val">60 minutes</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">📋</div><div><div class="ws-meta-label">Sections</div><div class="ws-meta-val">9 Parts + Cases</div></div></div>
+      <div class="ws-meta-row"><div class="ws-meta-icon">💡</div><div><div class="ws-meta-label">Focus</div><div class="ws-meta-val">Collaboration &amp; Planning</div></div></div>
+    </div>
+  </div>
+
+  <div class="objectives-box">
+    <h3>Learning Objectives</h3>
+    <div class="objectives-grid">
+      <div class="obj-item"><div class="obj-dot"></div><span>Understand the role of different disciplines within the MDT</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Develop clear and structured goals using a recognised framework</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify when and how to refer to other allied health professionals</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Work backwards from desired outcomes to create realistic plans</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Recognise key referral flags across disciplines</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Identify potential barriers to progress and develop strategies</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Collaborate effectively within a team to support participant outcomes</span></div>
+      <div class="obj-item"><div class="obj-dot"></div><span>Translate clinical reasoning into clear, actionable intervention plans</span></div>
+    </div>
+  </div>
+
+  <!-- MDT Map -->
+  <div class="sec-label"><div class="sec-label-num">1</div><div class="sec-label-text">The Multidisciplinary Team</div><div class="sec-label-bar"></div></div>
+  <div class="card">
+    <div class="mdt-map">
+      <div class="mdt-ring">
+        <div class="mdt-discipline" style="background:#059669;">Exercise Physiology</div>
+        <div class="mdt-discipline" style="background:#3B82F6;">Physiotherapy</div>
+        <div class="mdt-discipline" style="background:#8B5CF6;">Psychology</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 20px;">
+        <div class="mdt-center-node">🧑‍⚕️<br>OT +<br>Participant</div>
+      </div>
+      <div class="mdt-ring">
+        <div class="mdt-discipline" style="background:#F59E0B;">Positive Behaviour Support</div>
+        <div class="mdt-discipline" style="background:#EF4444;">Speech Pathology</div>
+        <div class="mdt-discipline" style="background:#6366F1;">Dietetics</div>
+      </div>
+    </div>
+    <div class="callout teal" style="margin-top:8px;">
+      <div class="callout-icon">🤝</div>
+      <div class="callout-content"><strong>No single discipline can address all factors.</strong> Effective collaboration requires clear communication, aligned goals, and awareness of each discipline's role and contribution.</div>
+    </div>
+  </div>
+
+  <!-- Referral Flags -->
+  <div class="sec-label"><div class="sec-label-num">2</div><div class="sec-label-text">Referral Flags by Discipline</div><div class="sec-label-bar"></div></div>
+  <table class="barrier-table">
+    <thead>
+      <tr>
+        <th class="barrier-col" style="background:#E4F2EF;color:var(--green);">If You Notice...</th>
+        <th class="solution-col" style="background:#EEF2FF;color:#4F46E5;">Consider Referring To...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="b">Reduced physical capacity, fatigue, low endurance limiting participation</td><td>Exercise Physiology or Physiotherapy</td></tr>
+      <tr><td class="b">Emotional distress, low motivation, or behavioural challenges</td><td>Psychology or Positive Behaviour Support</td></tr>
+      <tr><td class="b">Communication difficulties affecting engagement or independence</td><td>Speech Pathology</td></tr>
+      <tr><td class="b">Nutritional concerns impacting health or function</td><td>Dietetics</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SMART Goals -->
+  <div class="sec-label"><div class="sec-label-num">3</div><div class="sec-label-text">SMART Goal Setting</div><div class="sec-label-bar"></div></div>
+  <div class="smart-grid">
+    <div class="smart-tile"><div class="smart-letter" style="color:var(--green);">S</div><div class="smart-word" style="color:var(--green);">Specific</div><div class="smart-desc">Clearly describes what the participant will achieve</div></div>
+    <div class="smart-tile"><div class="smart-letter" style="color:#3B82F6;">M</div><div class="smart-word" style="color:#3B82F6;">Measurable</div><div class="smart-desc">Progress can be tracked and outcomes verified</div></div>
+    <div class="smart-tile"><div class="smart-letter" style="color:#F59E0B;">A</div><div class="smart-word" style="color:#F59E0B;">Achievable</div><div class="smart-desc">Realistic within the participant's capacity</div></div>
+    <div class="smart-tile"><div class="smart-letter" style="color:#EF4444;">R</div><div class="smart-word" style="color:#EF4444;">Relevant</div><div class="smart-desc">Meaningful and important to the participant</div></div>
+    <div class="smart-tile"><div class="smart-letter" style="color:#8B5CF6;">T</div><div class="smart-word" style="color:#8B5CF6;">Time-bound</div><div class="smart-desc">Has a defined timeframe for achievement</div></div>
+  </div>
+  <div class="grid-2" style="margin-top:14px;">
+    <div class="callout navy">
+      <div class="callout-icon">❌</div>
+      <div class="callout-content"><strong>Instead of:</strong> "Improve independence at home"</div>
+    </div>
+    <div class="callout teal">
+      <div class="callout-icon">✅</div>
+      <div class="callout-content"><strong>Use:</strong> "Prepare a simple meal independently 3 times/week within 4 weeks"</div>
+    </div>
+  </div>
+
+  <!-- Work Backwards -->
+  <div class="sec-label"><div class="sec-label-num">4</div><div class="sec-label-text">Working Backwards from the Ideal Outcome</div><div class="sec-label-bar"></div></div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="card">
+      <div class="wb-flow">
+        <div class="wb-row ideal"><div class="wb-icon">🏆</div>IDEAL OUTCOME — What would full success look like?</div>
+        <div class="wb-connector"></div>
+        <div class="wb-row steps"><div class="wb-icon">🪜</div>KEY STEPS — What needs to happen to get there?</div>
+        <div class="wb-connector"></div>
+        <div class="wb-row current"><div class="wb-icon">📍</div>CURRENT BASELINE — Where is the participant now?</div>
+      </div>
+      <div class="callout teal" style="margin-top:14px;">
+        <div class="callout-icon">💡</div>
+        <div class="callout-content">This ensures therapy is always aligned with <strong>meaningful outcomes</strong>, not isolated tasks.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🪜</div>Action Planning Steps</div>
+      <div class="card-body">
+        <ol style="padding-left:18px;">
+          <li style="padding:4px 0;">Define the ideal outcome clearly with the participant</li>
+          <li style="padding:4px 0;">Break the outcome into smaller, concrete steps</li>
+          <li style="padding:4px 0;">Identify the participant's current baseline honestly</li>
+          <li style="padding:4px 0;">Determine the next single achievable step</li>
+          <li style="padding:4px 0;">Implement, review, and adjust as needed</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barrier→Solution Map -->
+  <div class="sec-label"><div class="sec-label-num">5</div><div class="sec-label-text">Barrier → Solution Map</div><div class="sec-label-bar"></div></div>
+  <table class="barrier-table">
+    <thead>
+      <tr>
+        <th class="barrier-col">⚠️ Barrier</th>
+        <th class="solution-col">✅ Solution / Strategy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="b">Fatigue limiting task completion</td><td>Reduce task duration or break into smaller components across sessions</td></tr>
+      <tr><td class="b">Low motivation or confidence</td><td>Link task to meaningful goals; celebrate small wins; use MI strategies</td></tr>
+      <tr><td class="b">Environmental limitations at home</td><td>Modify environment or introduce assistive technology (AT or HM pathway)</td></tr>
+      <tr><td class="b">Limited support network</td><td>Explore NDIS support options; involve MDT; build peer connections</td></tr>
+      <tr><td class="b">Physical limitations (strength, mobility)</td><td>Refer to Exercise Physiology or Physiotherapy for capacity building</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Cases -->
+  <div class="sec-label"><div class="sec-label-num">6</div><div class="sec-label-text">Case-Based Discussion</div><div class="sec-label-bar"></div></div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 1</div><div class="case-title">MDT Collaboration &amp; Action Planning — Complex Independence Goal</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant aims to live more independently but experiences fatigue, limited mobility, and low confidence. They are currently receiving OT input only. Their ideal outcome is to manage their daily routine without support worker assistance.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What disciplines may need to be involved, and why?</li>
+          <li>What are the key barriers to independence in this case?</li>
+          <li>Working backwards from the ideal outcome, what are the next 2–3 steps?</li>
+          <li>Write a SMART goal for this participant.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="case-card">
+    <div class="case-header"><div class="case-badge">Case 2</div><div class="case-title">Anxiety, Avoidance &amp; Previous Non-Engagement</div></div>
+    <div class="case-body">
+      <p class="case-scenario">A participant has a goal to increase community participation but struggles with anxiety and avoids leaving the home. Previous plans have not been followed through. They report wanting to engage but feeling overwhelmed.</p>
+      <div class="case-discussion">
+        <h4>Discussion Questions</h4>
+        <ol>
+          <li>What factors may be contributing to the lack of progress?</li>
+          <li>What referral pathways should be considered?</li>
+          <li>How would you adapt goal setting to improve engagement?</li>
+          <li>What barriers need to be addressed before progressing with the plan?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaways-box">
+    <h3>Key Takeaways</h3>
+    <div class="takeaways-grid">
+      <div class="takeaway-item">Effective care requires collaboration across multiple disciplines</div>
+      <div class="takeaway-item">Starting with the ideal outcome helps guide meaningful intervention</div>
+      <div class="takeaway-item">Identifying referral needs is essential for comprehensive care</div>
+      <div class="takeaway-item">Barriers to progress should be identified early and addressed proactively</div>
+      <div class="takeaway-item">Clear and structured goals improve direction and outcomes</div>
+      <div class="takeaway-item">Translating clinical reasoning into clear plans is critical for achieving outcomes</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BACK COVER ── -->
+<div class="back-cover">
+  <div class="bc-left">
+    <div style="font-size:28px;font-weight:800;color:#fff;margin-bottom:8px;">PACE<span style="color:var(--sage);">.</span></div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:4px;">Health Management</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.35);">OT Training Program — Module 1: Foundations of Practice</div>
+    <div style="margin-top:20px;font-size:13px;color:rgba(255,255,255,0.5);">pacehm.com.au</div>
+  </div>
+  <div class="bc-right">
+    <div style="font-family:'Lora',serif;font-size:22px;font-style:italic;color:var(--sage);margin-bottom:8px;">"Help People Help Themselves"</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.4);">PACE Health Management Mission</div>
+  </div>
+</div>
+
+<script>
+// Sticky nav workshop highlight on scroll
+const sections = document.querySelectorAll('[id^="ws"]');
+const navLinks = document.querySelectorAll('.nav-ws');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.nav-ws[href="#${entry.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.2 });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
